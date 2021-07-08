@@ -2,7 +2,7 @@
   "name": "api-client-js",
   "version": "0.1.0",
   "description": "A javascript client for the Accentor API",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "lint": "eslint . --ext .js --fix"
   },
@@ -13,5 +13,8 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "prettier": "^2.3.2"
+  },
+  "dependencies": {
+    "fetch-retry": "^4.1.1"
   }
 }
