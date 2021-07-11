@@ -63,9 +63,9 @@ export class ApiModule {
     }
 
     if (routes.includes("read")) {
-      this.read = async function (auth, id, retryroutes = {}) {
+      this.read = async function (auth, id, retryOptions = {}) {
         const request = new Request(`${this.path}/${id}`, {
-          ...retryroutes,
+          ...retryOptions,
           method: "GET",
           headers: {
             "x-secret": auth.secret,
