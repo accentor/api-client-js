@@ -5,8 +5,135 @@ const fetchRetry = require("fetch-retry")(fetch, {
   },
 });
 export class ApiModule {
-  constructor(path) {
+  constructor(path, routes) {
     this.path = path;
+
+    if (routes.includes("index")) {
+      this.indexGenerator = async function* (auth) {
+        let page = 1;
+        while (true) {
+          let response;
+          try {
+            response = await fetchRetry(`${this.path}?page=${page}`, {
+              retries: 5,
+              method: "GET",
+              headers: {
+                "x-secret": auth.secret,
+                "x-device-id": auth.device_id,
+              },
+            });
+          } catch (error) {
+            const reason = {};
+            reason[error.constructor.name] = [error.message];
+            throw reason;
+          }
+          const result = await response.json();
+          const loaded = new Date();
+          for (let obj in result) {
+            result[obj].loaded = loaded;
+          }
+          if (response.ok && result) {
+            if (response.headers.get("x-total-pages") === String(page)) {
+              return result;
+            } else {
+              yield result;
+            }
+          } else {
+            throw result;
+          }
+
+          page++;
+        }
+      };
+    }
+
+    if (routes.includes("create")) {
+      this.create = async function (auth, object) {
+        const request = new Request(`${this.path}`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            "x-secret": auth?.secret,
+            "x-device-id": auth?.deviceId,
+          },
+          body: JSON.stringify(object),
+        });
+        return await this.resolveRequest(request);
+      };
+    }
+
+    if (routes.includes("read")) {
+      this.read = async function (auth, id, retryroutes = {}) {
+        const request = new Request(`${this.path}/${id}`, {
+          ...retryroutes,
+          method: "GET",
+          headers: {
+            "x-secret": auth.secret,
+            "x-device-id": auth.deviceId,
+          },
+        });
+        return await this.resolveRequest(request);
+      };
+    }
+
+    if (routes.includes("update")) {
+      this.update = async function (auth, id, object) {
+        const request = new Request(`${this.path}/${id}`, {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+            "x-secret": auth.secret,
+            "x-device-id": auth.deviceId,
+          },
+          body: JSON.stringify(object),
+        });
+        return await this.resolveRequest(request);
+      };
+    }
+
+    if (routes.includes("destroy")) {
+      this.destroy = async function (auth, id) {
+        const request = new Request(`${this.path}/${id}`, {
+          method: "DELETE",
+          headers: {
+            "x-secret": auth.secret,
+            "x-device-id": auth.deviceId,
+          },
+        });
+        return await this.resolveRequest(request);
+      };
+    }
+
+    if (routes.includes("destroyEmpty")) {
+      this.destroyEmpty = async function (auth) {
+        const request = new Request(`${this.path}/destroy_empty`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            "x-secret": auth.secret,
+            "x-device-id": auth.device_id,
+          },
+        });
+        return await this.resolveRequest(request);
+      };
+    }
+
+    if (routes.includes("merge")) {
+      this.merge = async function (auth, newID, oldID) {
+        const request = new Request(
+          `${this.path}/${newID}/merge?old_id=${oldID}`,
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              "x-secret": auth.secret,
+              "x-device-id": auth.device_id,
+            },
+          }
+        );
+        return await this.resolveRequest(request);
+      };
+    }
   }
 
   async resolveRequest(request) {
@@ -22,115 +149,5 @@ export class ApiModule {
     } else {
       throw result;
     }
-  }
-
-  async *indexGenerator(auth) {
-    let page = 1;
-    while (true) {
-      let response;
-      try {
-        response = await fetchRetry(`${this.path}?page=${page}`, {
-          retries: 5,
-          method: "GET",
-          headers: {
-            "x-secret": auth.secret,
-            "x-device-id": auth.device_id,
-          },
-        });
-      } catch (error) {
-        const reason = {};
-        reason[error.constructor.name] = [error.message];
-        throw reason;
-      }
-      const result = await response.json();
-      const loaded = new Date();
-      for (let obj in result) {
-        result[obj].loaded = loaded;
-      }
-      if (response.ok && result) {
-        if (response.headers.get("x-total-pages") === String(page)) {
-          return result;
-        } else {
-          yield result;
-        }
-      } else {
-        throw result;
-      }
-
-      page++;
-    }
-  }
-
-  async create(auth, object) {
-    const request = new Request(`${this.path}`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        "x-secret": auth?.secret,
-        "x-device-id": auth?.deviceId,
-      },
-      body: JSON.stringify(object),
-    });
-    return await this.resolveRequest(request);
-  }
-
-  async read(auth, id, retryOptions = {}) {
-    const request = new Request(`${this.path}/${id}`, {
-      ...retryOptions,
-      method: "GET",
-      headers: {
-        "x-secret": auth.secret,
-        "x-device-id": auth.deviceId,
-      },
-    });
-    return await this.resolveRequest(request);
-  }
-
-  async update(auth, id, object) {
-    const request = new Request(`${this.path}/${id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-        "x-secret": auth.secret,
-        "x-device-id": auth.deviceId,
-      },
-      body: JSON.stringify(object),
-    });
-    return await this.resolveRequest(request);
-  }
-
-  async destroy(auth, id) {
-    const request = new Request(`${this.path}/${id}`, {
-      method: "DELETE",
-      headers: {
-        "x-secret": auth.secret,
-        "x-device-id": auth.deviceId,
-      },
-    });
-    return await this.resolveRequest(request);
-  }
-
-  async destroyEmpty(auth) {
-    const request = new Request(`${this.path}/destroy_empty`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        "x-secret": auth.secret,
-        "x-device-id": auth.device_id,
-      },
-    });
-    return await this.resolveRequest(request);
-  }
-
-  async merge(auth, newID, oldID) {
-    const request = new Request(`${this.path}/${newID}/merge?old_id=${oldID}`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        "x-secret": auth.secret,
-        "x-device-id": auth.device_id,
-      },
-    });
-    return await this.resolveRequest(request);
   }
 }
