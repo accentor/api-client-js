@@ -14,7 +14,7 @@ const api = createApiClient(baseURL);
 ### Overview of functions
 All functions should be provided with an auth object containing the `device_id` and `secret`. In case an auth token isn't necessary (ie. when creating an auth token), you can simply pass an empty object.
 
-Not every function is available for every model. Refer to the API controllers to see the options.
+Not every function is available for every model. Only the routes available to that model can be called.
 ```js
 // Index
 const generator = api.tracks.indexGenerator(auth);
