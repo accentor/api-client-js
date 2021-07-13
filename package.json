@@ -10,6 +10,12 @@
   },
   "author": "Robbe Van Petegem <robbe@vanpetegem.me>",
   "license": "SEE LICENSE IN LICENSE",
+  "publishConfig": {
+    "@accentor:registry": "https://npm.pkg.github.com"
+  },
+  "files": [
+    "dist/**/*"
+  ],
   "devDependencies": {
     "esbuild": "^0.12.15",
     "eslint": "^7.30.0",
