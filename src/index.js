@@ -1,7 +1,7 @@
 import { ApiModule } from "./api_module";
 export * from "./scopes";
 
-export default function createApiClient(baseURL) {
+export function createApiClient(baseURL) {
   return {
     albums: new ApiModule(`${baseURL}/albums`, [
       "index",
