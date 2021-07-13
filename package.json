@@ -12,7 +12,7 @@
   "author": "Robbe Van Petegem <robbe@vanpetegem.me>",
   "license": "SEE LICENSE IN LICENSE",
   "publishConfig": {
-    "@accentor:registry": "https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com/"
   },
   "files": [
     "dist/**/*"
