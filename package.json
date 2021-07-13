@@ -2,9 +2,11 @@
   "name": "api-client-js",
   "version": "0.1.0",
   "description": "A javascript client for the Accentor API",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "scripts": {
-    "lint": "eslint . --ext .js --fix"
+    "lint": "eslint . --ext .js --fix",
+    "build": "node ./esbuild.js"
   },
   "author": "Robbe Van Petegem <robbe@vanpetegem.me>",
   "license": "SEE LICENSE IN LICENSE",
