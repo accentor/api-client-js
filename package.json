@@ -1,5 +1,5 @@
 {
-  "name": "api-client-js",
+  "name": "@accentor/api-client-js",
   "version": "0.1.0",
   "description": "A javascript client for the Accentor API",
   "main": "dist/index.js",
