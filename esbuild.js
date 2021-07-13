@@ -14,7 +14,7 @@ esbuild
   .build({
     ...baseConfig,
     format: "esm",
-    outfile: "dist/index.mjs",
+    outfile: "dist/index.esm.js",
   })
   .catch(() => process.exit(1));
 
@@ -22,6 +22,6 @@ esbuild
   .build({
     ...baseConfig,
     format: "cjs",
-    outfile: "dist/index.js",
+    outfile: "dist/index.cjs.js",
   })
   .catch(() => process.exit(1));
