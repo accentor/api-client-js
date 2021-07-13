@@ -1,3 +1,5 @@
+import { Scope } from "./scopes";
+
 const fetchRetry = require("fetch-retry")(fetch, {
   retries: 0,
   retryDelay: function (attempt) {
@@ -9,19 +11,22 @@ export class ApiModule {
     this.path = path;
 
     if (routes.includes("index")) {
-      this.indexGenerator = async function* (auth) {
+      this.indexGenerator = async function* (auth, scope = new Scope()) {
         let page = 1;
         while (true) {
           let response;
           try {
-            response = await fetchRetry(`${this.path}?page=${page}`, {
-              retries: 5,
-              method: "GET",
-              headers: {
-                "x-secret": auth.secret,
-                "x-device-id": auth.device_id,
-              },
-            });
+            response = await fetchRetry(
+              `${this.path}?page=${page}${scope.finalQuery}`,
+              {
+                retries: 5,
+                method: "GET",
+                headers: {
+                  "x-secret": auth.secret,
+                  "x-device-id": auth.device_id,
+                },
+              }
+            );
           } catch (error) {
             const reason = {};
             reason[error.constructor.name] = [error.message];

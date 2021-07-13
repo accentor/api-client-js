@@ -1,4 +1,5 @@
 import { ApiModule } from "./api_module";
+export * from "./scopes";
 
 export default function createApiClient(baseURL) {
   return {
