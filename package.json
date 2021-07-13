@@ -4,6 +4,7 @@
   "description": "A javascript client for the Accentor API",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
+  "repository": "github:accentor/api-client-js",
   "scripts": {
     "lint": "eslint . --ext .js --fix",
     "build": "node ./esbuild.js"
