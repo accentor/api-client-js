@@ -76,6 +76,7 @@ export default function createApiClient(baseURL) {
       "read",
       "destroy",
     ]),
+    plays: new ApiModule(`${baseURL}/plays`, ["index", "create"]),
     rescan: new ApiModule(`${baseURL}/rescan`, ["create", "read"]),
     tracks: new ApiModule(`${baseURL}/tracks`, [
       "index",
