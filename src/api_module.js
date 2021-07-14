@@ -121,7 +121,7 @@ export class ApiModule {
     if (routes.includes("merge")) {
       this.merge = async function (auth, newID, oldID) {
         const request = new Request(
-          `${this.path}/${newID}/merge?old_id=${oldID}`,
+          `${this.path}/${newID}/merge?source_id=${oldID}`,
           {
             method: "POST",
             headers: {
