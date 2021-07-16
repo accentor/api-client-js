@@ -1,6 +1,6 @@
 <!---
   Thanks for contributing to Accentor!
-  Make sure all GitHub actions (test & lint) will pass and fill out
+  Make sure all GitHub actions (build & lint) will pass and fill out
   the template.
 
   If any changes to your PR are necessary, we will ask for them
