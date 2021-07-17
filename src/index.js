@@ -4,7 +4,7 @@ export * from "./scopes";
 export function createApiClient(baseURL) {
   return {
     albums: new ApiModule(`${baseURL}/albums`, [
-      "index",
+      "indexWithScope",
       "create",
       "read",
       "update",
@@ -12,7 +12,7 @@ export function createApiClient(baseURL) {
       "destroyEmpty",
     ]),
     artists: new ApiModule(`${baseURL}/artists`, [
-      "index",
+      "indexWithScope",
       "create",
       "read",
       "update",
@@ -80,7 +80,7 @@ export function createApiClient(baseURL) {
     plays: new ApiModule(`${baseURL}/plays`, ["index", "create"]),
     rescan: new ApiModule(`${baseURL}/rescan`, ["create", "read"]),
     tracks: new ApiModule(`${baseURL}/tracks`, [
-      "index",
+      "indexWithScope",
       "create",
       "read",
       "update",
