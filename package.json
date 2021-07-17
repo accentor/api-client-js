@@ -9,7 +9,10 @@
     "lint": "eslint . --ext .js --fix",
     "build": "node ./esbuild.js"
   },
-  "author": "Robbe Van Petegem <robbe@vanpetegem.me>",
+  "author": "Team Accentor <team@accentor.tech>",
+  "contributors": [
+    "Robbe Van Petegem <robbe@vanpetegem.me>"
+  ],
   "license": "SEE LICENSE IN LICENSE",
   "files": [
     "dist/**/*"
