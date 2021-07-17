@@ -15,6 +15,8 @@
     "prettier": "^2.3.2"
   },
   "dependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/eslint-parser": "^7.14.7",
     "fetch-retry": "^4.1.1"
   }
 }
