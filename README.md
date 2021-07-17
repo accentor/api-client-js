@@ -88,5 +88,5 @@ new TracksScope.filter(string) // Search in track titles
 ```
 
 ## Versioning
-This package bases it's versioning on the major and minor versions of the [API](https://github.com/accentor/api). This way, changes in routes and scopes are introduced in the same version that they are introduced in the API.
+This package bases its versioning on the major and minor versions of the [API](https://github.com/accentor/api). This way, changes in routes and scopes are introduced in the same version that they are introduced in the API.
 Patch releases can be issued to fix releases in this package itself.
