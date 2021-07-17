@@ -11,44 +11,14 @@ export class ApiModule {
     this.path = path;
 
     if (routes.includes("index")) {
-      this.indexGenerator = async function* (auth, scope = new Scope()) {
-        let page = 1;
-        while (true) {
-          let response;
-          try {
-            response = await fetchRetry(
-              `${this.path}?page=${page}${scope.finalQuery}`,
-              {
-                retries: 5,
-                method: "GET",
-                headers: {
-                  "x-secret": auth.secret,
-                  "x-device-id": auth.device_id,
-                },
-              }
-            );
-          } catch (error) {
-            const reason = {};
-            reason[error.constructor.name] = [error.message];
-            throw reason;
-          }
-          const result = await response.json();
-          const loaded = new Date();
-          for (let obj in result) {
-            result[obj].loaded = loaded;
-          }
-          if (response.ok && result) {
-            if (response.headers.get("x-total-pages") === String(page)) {
-              return result;
-            } else {
-              yield result;
-            }
-          } else {
-            throw result;
-          }
+      this.indexGenerator = async function (auth) {
+        return this.internalIndexGenerator(auth);
+      };
+    }
 
-          page++;
-        }
+    if (routes.includes("indexWithScope")) {
+      this.indexGenerator = async function (auth, scope) {
+        return this.internalIndexGenerator(auth, scope);
       };
     }
 
@@ -141,7 +111,7 @@ export class ApiModule {
     }
   }
 
-  async resolveRequest(request) {
+  async #resolveRequest(request) {
     let response, result;
     try {
       response = await fetchRetry(request);
@@ -153,6 +123,46 @@ export class ApiModule {
       return result;
     } else {
       throw result;
+    }
+  }
+
+  async *#internalIndexGenerator(auth, scope = new Scope()) {
+    let page = 1;
+    while (true) {
+      let response;
+      try {
+        response = await fetchRetry(
+          `${this.path}?page=${page}${scope.finalQuery}`,
+          {
+            retries: 5,
+            method: "GET",
+            headers: {
+              "x-secret": auth.secret,
+              "x-device-id": auth.device_id,
+            },
+          }
+        );
+      } catch (error) {
+        const reason = {};
+        reason[error.constructor.name] = [error.message];
+        throw reason;
+      }
+      const result = await response.json();
+      const loaded = new Date();
+      for (let obj in result) {
+        result[obj].loaded = loaded;
+      }
+      if (response.ok && result) {
+        if (response.headers.get("x-total-pages") === String(page)) {
+          return result;
+        } else {
+          yield result;
+        }
+      } else {
+        throw result;
+      }
+
+      page++;
     }
   }
 }
