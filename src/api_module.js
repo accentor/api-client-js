@@ -12,13 +12,13 @@ export class ApiModule {
 
     if (routes.includes("index")) {
       this.indexGenerator = async function (auth) {
-        return this.internalIndexGenerator(auth, new Scope());
+        return this.#internalIndexGenerator(auth, new Scope());
       };
     }
 
     if (routes.includes("indexWithScope")) {
       this.indexGenerator = async function (auth, scope = new Scope()) {
-        return this.internalIndexGenerator(auth, scope);
+        return this.#internalIndexGenerator(auth, scope);
       };
     }
 
@@ -33,7 +33,7 @@ export class ApiModule {
           },
           body: JSON.stringify(object),
         });
-        return await this.resolveRequest(request);
+        return await this.#resolveRequest(request);
       };
     }
 
@@ -47,7 +47,7 @@ export class ApiModule {
             "x-device-id": auth.deviceId,
           },
         });
-        return await this.resolveRequest(request);
+        return await this.#resolveRequest(request);
       };
     }
 
@@ -62,7 +62,7 @@ export class ApiModule {
           },
           body: JSON.stringify(object),
         });
-        return await this.resolveRequest(request);
+        return await this.#resolveRequest(request);
       };
     }
 
@@ -75,7 +75,7 @@ export class ApiModule {
             "x-device-id": auth.deviceId,
           },
         });
-        return await this.resolveRequest(request);
+        return await this.#resolveRequest(request);
       };
     }
 
@@ -89,7 +89,7 @@ export class ApiModule {
             "x-device-id": auth.device_id,
           },
         });
-        return await this.resolveRequest(request);
+        return await this.#resolveRequest(request);
       };
     }
 
@@ -106,7 +106,7 @@ export class ApiModule {
             },
           }
         );
-        return await this.resolveRequest(request);
+        return await this.#resolveRequest(request);
       };
     }
   }
