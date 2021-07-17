@@ -16,8 +16,8 @@ All functions should be provided with an auth object containing the `device_id` 
 
 Not every function is available for every model. Only the routes available to that model can be called.
 ```js
-// Index
-const generator = api.tracks.indexGenerator(auth, scope?);
+// Index (some indexGenerators can be called with an optional scope, see below)
+const generator = api.users.indexGenerator(auth);
 const { results, done } = await generator.next();
 
 // Create
