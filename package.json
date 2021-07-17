@@ -11,9 +11,6 @@
   },
   "author": "Robbe Van Petegem <robbe@vanpetegem.me>",
   "license": "SEE LICENSE IN LICENSE",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "files": [
     "dist/**/*"
   ],
