@@ -12,12 +12,12 @@ export class ApiModule {
 
     if (routes.includes("index")) {
       this.indexGenerator = async function (auth) {
-        return this.internalIndexGenerator(auth);
+        return this.internalIndexGenerator(auth, new Scope());
       };
     }
 
     if (routes.includes("indexWithScope")) {
-      this.indexGenerator = async function (auth, scope) {
+      this.indexGenerator = async function (auth, scope = new Scope()) {
         return this.internalIndexGenerator(auth, scope);
       };
     }
@@ -126,7 +126,7 @@ export class ApiModule {
     }
   }
 
-  async *#internalIndexGenerator(auth, scope = new Scope()) {
+  async *#internalIndexGenerator(auth, scope) {
     let page = 1;
     while (true) {
       let response;
