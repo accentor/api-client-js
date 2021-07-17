@@ -4,6 +4,7 @@ module.exports = {
     node: true,
     browser: true,
   },
+  ignorePatterns: ["dist/**/*"],
   extends: ["eslint:recommended", "plugin:prettier/recommended"],
   plugins: [],
   rules: {

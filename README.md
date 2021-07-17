@@ -1,10 +1,17 @@
 # Accentor API Client
 
+## Install 
+Install using your package manger of choice:
+```
+yarn add @accentor/api-client-js
+npm install @accentor/api-client-js
+```
+
 ## How to use
 
 To intialize the API client:
 ```js
-import { createApiClient } from "api-client-js";
+import { createApiClient } from "@accentor/api-client-js";
 
 const baseURL = /* Your logic for baseURL, including /api/ */
 
@@ -44,7 +51,7 @@ If you want to filter the items fetched by through `indexGenerator`, you can pas
 
 An example of a scope used:
 ```js
-import { AlbumsScope } from "api-client-js";
+import { AlbumsScope } from "@accentor/api-client-js";
 
 const scope = new AlbumsScope.label(1);
 const generator = api.albums.indexGenerator(auth, scope)

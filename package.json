@@ -1,14 +1,24 @@
 {
-  "name": "api-client-js",
+  "name": "@accentor/api-client-js",
   "version": "0.1.0",
   "description": "A javascript client for the Accentor API",
-  "main": "src/index.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "repository": "github:accentor/api-client-js",
   "scripts": {
-    "lint": "eslint . --ext .js --fix"
+    "lint": "eslint . --ext .js --fix",
+    "build": "node ./esbuild.js"
   },
-  "author": "Robbe Van Petegem <robbe@vanpetegem.me>",
+  "author": "Team Accentor <team@accentor.tech>",
+  "contributors": [
+    "Robbe Van Petegem <robbe@vanpetegem.me>"
+  ],
   "license": "SEE LICENSE IN LICENSE",
+  "files": [
+    "dist/**/*"
+  ],
   "devDependencies": {
+    "esbuild": "^0.12.15",
     "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
