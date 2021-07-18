@@ -13,13 +13,13 @@ export class ApiModule {
     this.path = path;
 
     if (routes.includes("index")) {
-      this.indexGenerator = async function (auth) {
+      this.indexGenerator = function (auth) {
         return this.#internalIndexGenerator(auth, new Scope());
       };
     }
 
     if (routes.includes("indexWithScope")) {
-      this.indexGenerator = async function (auth, scope = new Scope()) {
+      this.indexGenerator = function (auth, scope = new Scope()) {
         return this.#internalIndexGenerator(auth, scope);
       };
     }
