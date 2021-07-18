@@ -1,11 +1,13 @@
 import { Scope } from "./scopes";
+import useFetchRetry from "fetch-retry";
 
-const fetchRetry = require("fetch-retry")(fetch, {
+const fetchRetry = useFetchRetry(fetch, {
   retries: 0,
   retryDelay: function (attempt) {
     return Math.pow(2, attempt) * 15000;
   },
 });
+
 export class ApiModule {
   constructor(path, routes) {
     this.path = path;
