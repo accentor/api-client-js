@@ -26,7 +26,7 @@ export function createApiClient(baseURL) {
       "read",
       "destroy",
     ]),
-    codec_conversion: new ApiModule(`${baseURL}/codec_conversions`, [
+    codec_conversions: new ApiModule(`${baseURL}/codec_conversions`, [
       "index",
       "create",
       "read",
