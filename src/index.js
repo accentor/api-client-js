@@ -20,13 +20,13 @@ export function createApiClient(baseURL) {
       "destroyEmpty",
       "merge",
     ]),
-    auth: new ApiModule(`${baseURL}/auth_tokens`, [
+    auth_tokens: new ApiModule(`${baseURL}/auth_tokens`, [
       "index",
       "create",
       "read",
       "destroy",
     ]),
-    codec_conversion: new ApiModule(`${baseURL}/codec_conversions`, [
+    codec_conversions: new ApiModule(`${baseURL}/codec_conversions`, [
       "index",
       "create",
       "read",
