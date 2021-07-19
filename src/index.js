@@ -20,7 +20,7 @@ export function createApiClient(baseURL) {
       "destroyEmpty",
       "merge",
     ]),
-    auth: new ApiModule(`${baseURL}/auth_tokens`, [
+    auth_tokens: new ApiModule(`${baseURL}/auth_tokens`, [
       "index",
       "create",
       "read",
