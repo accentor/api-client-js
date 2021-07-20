@@ -31,7 +31,7 @@ export class ApiModule {
           headers: {
             "content-type": "application/json",
             "x-secret": auth?.secret,
-            "x-device-id": auth?.deviceId,
+            "x-device-id": auth?.device_id,
           },
           body: JSON.stringify(object),
         });
@@ -46,7 +46,7 @@ export class ApiModule {
           method: "GET",
           headers: {
             "x-secret": auth.secret,
-            "x-device-id": auth.deviceId,
+            "x-device-id": auth.device_id,
           },
         });
         return await this.#resolveRequest(request);
@@ -60,7 +60,7 @@ export class ApiModule {
           headers: {
             "content-type": "application/json",
             "x-secret": auth.secret,
-            "x-device-id": auth.deviceId,
+            "x-device-id": auth.device_id,
           },
           body: JSON.stringify(object),
         });
@@ -74,7 +74,7 @@ export class ApiModule {
           method: "DELETE",
           headers: {
             "x-secret": auth.secret,
-            "x-device-id": auth.deviceId,
+            "x-device-id": auth.device_id,
           },
         });
         return await this.#resolveRequest(request);
