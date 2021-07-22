@@ -3,6 +3,8 @@ categories:
     label: 'enhancement'
   - title: '🐛 Bug Fixes'
     label: 'bug'
+  - title: '🔧 Internal Changes'
+    label: 'refactor'
   - title: '🧰 Maintenance'
     label: 'chore'
   - title: '📖 Documentation'
