@@ -1,5 +1,7 @@
 export class Scope {
-  scopes = [];
+  constructor() {
+    this.scopes = [];
+  }
 
   get finalQuery() {
     return this.scopes.map((s) => `&${s.key}=${s.query}`).join("");
