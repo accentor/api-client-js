@@ -14,13 +14,7 @@ export class ApiModule {
 
     if (routes.includes("index")) {
       this.indexGenerator = function (auth) {
-        return this.#internalIndexGenerator(auth, new Scope());
-      };
-    }
-
-    if (routes.includes("indexWithScope")) {
-      this.indexGenerator = function (auth, scope = new Scope()) {
-        return this.#internalIndexGenerator(auth, scope);
+        return this._internalIndexGenerator(auth, new Scope());
       };
     }
 
@@ -128,7 +122,7 @@ export class ApiModule {
     }
   }
 
-  async *#internalIndexGenerator(auth, scope) {
+  async *_internalIndexGenerator(auth, scope) {
     let page = 1;
     while (true) {
       let response;
@@ -198,4 +192,19 @@ export class RescanModule extends ApiModule {
     });
     return await this._resolveRequest(request);
   };
+}
+
+export class ApiModuleWithScope extends ApiModule {
+  constructor(path, routes) {
+    super(
+      path,
+      routes.filter((r) => r !== "index")
+    );
+
+    if (routes.includes("index")) {
+      this.indexGenerator = function (auth, scope = new Scope()) {
+        return this._internalIndexGenerator(auth, scope);
+      };
+    }
+  }
 }

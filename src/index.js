@@ -1,18 +1,18 @@
-import { ApiModule, RescanModule } from "./api_module";
+import { ApiModule, RescanModule, ApiModuleWithScope } from "./api_module";
 export * from "./scopes";
 
 export function createApiClient(baseURL) {
   return {
-    albums: new ApiModule(`${baseURL}/albums`, [
-      "indexWithScope",
+    albums: new ApiModuleWithScope(`${baseURL}/albums`, [
+      "index",
       "create",
       "read",
       "update",
       "destroy",
       "destroyEmpty",
     ]),
-    artists: new ApiModule(`${baseURL}/artists`, [
-      "indexWithScope",
+    artists: new ApiModuleWithScope(`${baseURL}/artists`, [
+      "index",
       "create",
       "read",
       "update",
@@ -79,8 +79,8 @@ export function createApiClient(baseURL) {
     ]),
     plays: new ApiModule(`${baseURL}/plays`, ["index", "create"]),
     rescan: new RescanModule(`${baseURL}/rescan`),
-    tracks: new ApiModule(`${baseURL}/tracks`, [
-      "indexWithScope",
+    tracks: new ApiModuleWithScope(`${baseURL}/tracks`, [
+      "index",
       "create",
       "read",
       "update",
