@@ -187,7 +187,6 @@ export class AuthTokenModule extends CRDModule {
   async create(object) {
     return await httpPost(this.path, {}, object);
   }
-
 }
 
 export class CodecConversionModule extends CRUDModule {
