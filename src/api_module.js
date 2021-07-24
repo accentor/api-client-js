@@ -183,6 +183,11 @@ export class AuthTokenModule extends CRDModule {
   constructor(baseURL) {
     super(`${baseURL}/auth_tokens`);
   }
+
+  async create(object) {
+    return await httpPost(this.path, {}, object);
+  }
+
 }
 
 export class CodecConversionModule extends CRUDModule {
