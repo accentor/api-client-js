@@ -46,7 +46,7 @@ async function* indexGenerator(path, auth, scope) {
 }
 
 async function httpGet(path, auth, retryOptions) {
-  const request = new Request(`${this.path}`, {
+  const request = new Request(path, {
     ...retryOptions,
     method: "GET",
     headers: {
