@@ -43,7 +43,13 @@ const true = await api.tracks.destroy(auth, id);
 const true = await api.albums.destroyEmpty(auth, id);
 
 // Merge
-const result = await api.tracks.merge(auth, newId, oldID)
+const result = await api.tracks.merge(auth, newId, oldID);
+
+// Start rescan
+const result = await api.rescan.start(auth);
+
+// Get rescan status
+const result = await api.rescan.show(auth);
 ```
  
 ### Adding scopes to indexes
