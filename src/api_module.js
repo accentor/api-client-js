@@ -35,7 +35,7 @@ export class ApiModule {
           },
           body: JSON.stringify(object),
         });
-        return await this.#resolveRequest(request);
+        return await this._resolveRequest(request);
       };
     }
 
@@ -49,7 +49,7 @@ export class ApiModule {
             "x-device-id": auth.device_id,
           },
         });
-        return await this.#resolveRequest(request);
+        return await this._resolveRequest(request);
       };
     }
 
@@ -64,7 +64,7 @@ export class ApiModule {
           },
           body: JSON.stringify(object),
         });
-        return await this.#resolveRequest(request);
+        return await this._resolveRequest(request);
       };
     }
 
@@ -77,7 +77,7 @@ export class ApiModule {
             "x-device-id": auth.device_id,
           },
         });
-        return await this.#resolveRequest(request);
+        return await this._resolveRequest(request);
       };
     }
 
@@ -91,7 +91,7 @@ export class ApiModule {
             "x-device-id": auth.device_id,
           },
         });
-        return await this.#resolveRequest(request);
+        return await this._resolveRequest(request);
       };
     }
 
@@ -108,12 +108,12 @@ export class ApiModule {
             },
           }
         );
-        return await this.#resolveRequest(request);
+        return await this._resolveRequest(request);
       };
     }
   }
 
-  async #resolveRequest(request) {
+  async _resolveRequest(request) {
     let response, result;
     try {
       response = await fetchRetry(request);
@@ -167,4 +167,35 @@ export class ApiModule {
       page++;
     }
   }
+}
+
+export class RescanModule extends ApiModule {
+  constructor(path) {
+    super(path, []);
+  }
+
+  start = async function (auth, object) {
+    const request = new Request(`${this.path}`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "x-secret": auth.secret,
+        "x-device-id": auth.device_id,
+      },
+      body: JSON.stringify(object),
+    });
+    return await this._resolveRequest(request);
+  };
+
+  show = async function (auth, retryOptions = {}) {
+    const request = new Request(`${this.path}`, {
+      ...retryOptions,
+      method: "GET",
+      headers: {
+        "x-secret": auth.secret,
+        "x-device-id": auth.device_id,
+      },
+    });
+    return await this._resolveRequest(request);
+  };
 }
