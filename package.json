@@ -11,15 +11,14 @@
   },
   "author": "Team Accentor <team@accentor.tech>",
   "contributors": [
-    "Robbe Van Petegem <robbe@vanpetegem.me>"
+    "Robbe Van Petegem <robbe@vanpetegem.me>",
+    "Charlotte Van Petegem <accentor@chvp.be>"
   ],
   "license": "SEE LICENSE IN LICENSE",
   "files": [
     "dist/**/*"
   ],
   "devDependencies": {
-    "@babel/core": "^7.14.6",
-    "@babel/eslint-parser": "^7.14.7",
     "esbuild": "^0.12.15",
     "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",

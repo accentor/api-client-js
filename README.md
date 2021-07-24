@@ -19,12 +19,12 @@ const api = createApiClient(baseURL);
 ```
 
 ### Overview of functions
-All functions should be provided with an auth object containing the `device_id` and `secret`. In case an auth token isn't necessary (ie. when creating an auth token), you can simply pass an empty object.
+All functions should be provided with an auth object containing the `device_id` and `secret`. When creating an auth token, you can leave out this object.
 
 Not every function is available for every model. Only the routes available to that model can be called.
 ```js
-// Index (some indexGenerators can be called with an optional scope, see below)
-const generator = api.users.indexGenerator(auth);
+// Index (some indexes can be called with an optional scope, see below)
+const generator = api.users.index(auth);
 const { results, done } = await generator.next();
 
 // Create
@@ -60,7 +60,7 @@ An example of a scope used:
 import { AlbumsScope } from "@accentor/api-client-js";
 
 const scope = new AlbumsScope.label(1);
-const generator = api.albums.indexGenerator(auth, scope)
+const generator = api.albums.index(auth, scope)
 ```
 
 You can create scopes in different ways:
