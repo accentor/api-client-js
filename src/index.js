@@ -14,6 +14,7 @@ import {
   TrackModule,
   UserModule,
 } from "./api_module";
+export * from "./api_module";
 export * from "./scopes";
 
 export function createApiClient(baseURL) {
