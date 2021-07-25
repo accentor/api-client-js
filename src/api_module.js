@@ -27,10 +27,6 @@ async function* indexGenerator(path, auth, scope) {
       throw reason;
     }
     const result = await response.json();
-    const loaded = new Date();
-    for (let obj in result) {
-      result[obj].loaded = loaded;
-    }
     if (response.ok && result) {
       if (response.headers.get("x-total-pages") === page.toString()) {
         return result;
