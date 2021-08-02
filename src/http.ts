@@ -10,11 +10,11 @@ const fetchRetry = useFetchRetry(fetch, {
   },
 });
 
-export async function* indexGenerator<OT, ST extends Scope>(
+export async function* indexGenerator<ReturnType, ST extends Scope>(
   path: string,
   auth: AuthInterface,
   scope: ST
-): AsyncGenerator<OT, OT, void> {
+): AsyncGenerator<ReturnType, ReturnType, void> {
   let page = 1;
   while (true) {
     let response: Response;
@@ -47,11 +47,11 @@ export async function* indexGenerator<OT, ST extends Scope>(
   }
 }
 
-export async function httpGet<OT>(
+export async function httpGet<ReturnType>(
   path: string,
   auth: AuthInterface,
   retryOptions: RetryOptions
-): Promise<OT> {
+): Promise<ReturnType> {
   const request = new Request(path, {
     ...retryOptions,
     method: "GET",
@@ -60,14 +60,14 @@ export async function httpGet<OT>(
       "x-device-id": auth.device_id,
     },
   });
-  return await resolve<OT>(request);
+  return await resolve<ReturnType>(request);
 }
 
-export async function httpPost<IT, OT>(
+export async function httpPost<Params, ReturnType>(
   path: string,
   auth: AuthInterface,
-  data: IT
-): Promise<OT> {
+  data: Params
+): Promise<ReturnType> {
   const request = new Request(path, {
     method: "POST",
     headers: {
@@ -77,14 +77,14 @@ export async function httpPost<IT, OT>(
     },
     body: JSON.stringify(data),
   });
-  return await resolve<OT>(request);
+  return await resolve<ReturnType>(request);
 }
 
-export async function httpPatch<IT, OT>(
+export async function httpPatch<Params, ReturnType>(
   path: string,
   auth: AuthInterface,
-  data: IT
-): Promise<OT> {
+  data: Params
+): Promise<ReturnType> {
   const request = new Request(path, {
     method: "PATCH",
     headers: {
@@ -94,7 +94,7 @@ export async function httpPatch<IT, OT>(
     },
     body: JSON.stringify(data),
   });
-  return await resolve<OT>(request);
+  return await resolve<ReturnType>(request);
 }
 
 export async function httpDelete(
@@ -111,8 +111,8 @@ export async function httpDelete(
   return await resolve<boolean>(request);
 }
 
-async function resolve<OT>(request: Request): Promise<OT> {
-  let response: Response, result: OT;
+async function resolve<ReturnType>(request: Request): Promise<ReturnType> {
+  let response: Response, result: ReturnType;
   try {
     response = await fetchRetry(request);
     result = response.status === 204 ? true : await response.json();
