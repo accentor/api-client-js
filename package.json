@@ -6,7 +6,7 @@
   "module": "dist/index.esm.js",
   "repository": "github:accentor/api-client-js",
   "scripts": {
-    "lint": "eslint . --ext .js --fix",
+    "lint": "eslint . --ext .ts --fix",
     "build": "node ./esbuild.js"
   },
   "author": "Team Accentor <team@accentor.tech>",
