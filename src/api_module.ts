@@ -130,13 +130,29 @@ export class ArtistModule extends CRUDModule<ArtistParams, Artist> {
   }
 }
 
-export class AuthTokenModule extends CRDModule<AuthTokenParams, AuthToken> {
+export class AuthTokenModule extends BaseModule {
   constructor(baseURL: string) {
     super(baseURL, "auth_tokens");
   }
 
+  index(auth: AuthInterface): AsyncGenerator<AuthToken, AuthToken, void> {
+    return indexGenerator<AuthToken, Scope>(this.url, auth, new Scope());
+  }
+
   async create(object: AuthTokenParams): Promise<AuthTokenWithSecret> {
     return await httpPost(this.url, {} as AuthInterface, object);
+  }
+
+  async read(
+    auth: AuthInterface,
+    id: number,
+    retryOptions: RetryOptions = {}
+  ): Promise<AuthToken> {
+    return await httpGet<AuthToken>(`${this.url}/${id}`, auth, retryOptions);
+  }
+
+  async destroy(auth: AuthInterface, id: number | string): Promise<boolean> {
+    return await httpDelete(`${this.url}/${id}`, auth);
   }
 }
 
