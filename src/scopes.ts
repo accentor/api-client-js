@@ -1,61 +1,59 @@
 export class Scope {
-  constructor() {
-    this.scopes = [];
-  }
+  scopes: { key: string; query: string | number }[] = [];
 
-  get finalQuery() {
+  get finalQuery(): string {
     return this.scopes.map((s) => `&${s.key}=${s.query}`).join("");
   }
 
-  addScope(key, query) {
+  addScope(key: string, query: number | string): this {
     this.scopes.push({ key, query });
     return this;
   }
 
-  addScopesFromArray(key, queries) {
+  addScopesFromArray(key: string, queries: number[] | string[]): this {
     queries.forEach((q) => this.addScope(key, q));
     return this;
   }
 }
 
 export class AlbumsScope extends Scope {
-  artist(id) {
+  artist(id: number | string): this {
     return this.addScope("artist_id", id);
   }
 
-  filter(string) {
+  filter(string: string): this {
     return this.addScope("filter", string);
   }
 
-  label(id) {
+  label(id: number | string): this {
     return this.addScope("label", id);
   }
 
-  labels(ids) {
+  labels(ids: number[] | string[]): this {
     return this.addScopesFromArray("labels", ids);
   }
 }
 
 export class ArtistsScope extends Scope {
-  filter(string) {
+  filter(string: string): this {
     return this.addScope("filter", string);
   }
 }
 
 export class TracksScope extends Scope {
-  album(id) {
+  album(id: number | string): this {
     return this.addScope("album_id", id);
   }
 
-  artist(id) {
+  artist(id: number | string): this {
     return this.addScope("artist_id", id);
   }
 
-  filter(string) {
+  filter(string: string): this {
     return this.addScope("filter", string);
   }
 
-  genre(id) {
+  genre(id: number | string): this {
     return this.addScope("genre_id", id);
   }
 }
