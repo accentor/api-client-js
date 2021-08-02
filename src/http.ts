@@ -1,7 +1,7 @@
 import useFetchRetry from "fetch-retry";
 import { Scope } from "./scopes";
 import { AuthInterface } from "./@types/auth";
-import { RetryOptions } from "./@types/fetchRetry";
+import { RetryOptions } from "./@types/fetch_retry";
 
 const fetchRetry = useFetchRetry(fetch, {
   retries: 0,
