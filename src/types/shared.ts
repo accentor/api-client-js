@@ -4,11 +4,11 @@ export type Timestamps = {
 };
 
 export type Image = {
-  image?: string;
-  image100?: string;
-  image250?: string;
-  image500?: string;
-  image_type: string;
+  image: string | null;
+  image100: string | null;
+  image250: string | null;
+  image500: string | null;
+  image_type: string | null;
 };
 
 export type ImageParams = {

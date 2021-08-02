@@ -6,16 +6,16 @@ export type Track = Timestamps & {
   normalized_title: string;
   number: number;
   album_id: number;
-  review_comment?: string;
+  review_comment: string | null;
   genre_ids: number[];
-  codec_id?: number;
-  length?: number;
-  bitrate?: number;
-  location_id?: number;
+  codec_id: number | null;
+  length: number | null;
+  bitrate: number | null;
+  location_id: number | null;
   track_artists: TrackArtist[];
-  filename?: string;
-  sample_rate?: number;
-  bit_depth?: number;
+  filename: string | null;
+  sample_rate: number | null;
+  bit_depth: number | null;
 };
 
 type TrackArtistParams = {

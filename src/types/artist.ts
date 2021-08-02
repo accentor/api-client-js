@@ -13,5 +13,5 @@ export type Artist = Timestamps &
     id: number;
     name: string;
     normalized_name: string;
-    review_comment?: string;
+    review_comment: string | null;
   };

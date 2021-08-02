@@ -19,9 +19,9 @@ export type Album = Timestamps &
     title: string;
     normalized_title: string;
     release: Date;
-    review_comment?: string;
-    edition?: Date;
-    edition_description?: string;
+    review_comment: string | null;
+    edition: Date | null;
+    edition_description: string | null;
     album_artists: AlbumArtist[];
     album_labels: AlbumLabel[];
   };
@@ -35,9 +35,10 @@ type AlbumArtistParams = {
 
 type AlbumArtist = AlbumArtistParams & {
   normalized_name: string;
+  separator: string | null;
 };
 
 type AlbumLabel = {
   label_id: number;
-  catalogue_number?: string;
+  catalogue_number: string | null;
 };
