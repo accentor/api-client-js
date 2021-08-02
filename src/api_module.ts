@@ -199,7 +199,7 @@ export class GenreModule extends CRUDModule<GenreParams, Genre> {
     sourceId: number
   ): Promise<Genre> {
     return await httpPost<Record<string, never>, Genre>(
-      `{this.path}/${id}/merge?source_id=${sourceId}`,
+      `${this.path}/${id}/merge?source_id=${sourceId}`,
       auth,
       {}
     );
