@@ -3,10 +3,9 @@
     "allowSyntheticDefaultImports": true,
     "lib": ["es2020", "es6", "dom"],
     "target": "es2018",
-    "emitDeclarationOnly": true,
+    "noEmit": true,
     "declaration": true,    
     "baseUrl": "./src",
-    "outFile": "./dist/index.js",
     "paths": {
       "*": ["node_modules/*"]
     },
