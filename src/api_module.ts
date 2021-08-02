@@ -11,24 +11,24 @@ import {
   AuthToken,
   AuthTokenParams,
   AuthTokenWithSecret,
-} from "./@types/auth";
-import { AlbumParams, Album } from "./@types/album";
-import { RetryOptions } from "./@types/fetch_retry";
-import { ArtistParams, Artist } from "./@types/artist";
+} from "./types/auth";
+import { AlbumParams, Album } from "./types/album";
+import { RetryOptions } from "./types/fetch_retry";
+import { ArtistParams, Artist } from "./types/artist";
 import {
   CodecConversion,
   CodecConversionParams,
-} from "./@types/codec_conversion";
-import { Codec, CodecParams } from "./@types/codec";
-import { CoverFilename, CoverFilenameParams } from "./@types/cover_filename";
-import { Genre, GenreParams } from "./@types/genre";
-import { ImageType, ImageTypeParams } from "./@types/image_type";
-import { Label, LabelParams } from "./@types/label";
-import { Location, LocationParams } from "./@types/location";
-import { Play, PlayParams } from "./@types/play";
-import { Rescan } from "./@types/rescan";
-import { Track, TrackParams } from "./@types/track";
-import { User, UserParams } from "./@types/user";
+} from "./types/codec_conversion";
+import { Codec, CodecParams } from "./types/codec";
+import { CoverFilename, CoverFilenameParams } from "./types/cover_filename";
+import { Genre, GenreParams } from "./types/genre";
+import { ImageType, ImageTypeParams } from "./types/image_type";
+import { Label, LabelParams } from "./types/label";
+import { Location, LocationParams } from "./types/location";
+import { Play, PlayParams } from "./types/play";
+import { Rescan } from "./types/rescan";
+import { Track, TrackParams } from "./types/track";
+import { User, UserParams } from "./types/user";
 
 class BaseModule {
   path: string;
