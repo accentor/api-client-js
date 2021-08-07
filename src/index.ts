@@ -17,7 +17,22 @@ import {
 export * from "./api_module";
 export * from "./scopes";
 
-export function createApiClient(baseURL) {
+export function createApiClient(baseURL: string): {
+  albums: AlbumModule;
+  artists: ArtistModule;
+  auth_tokens: AuthTokenModule;
+  codec_conversions: CodecConversionModule;
+  codecs: CodecModule;
+  cover_filenames: CoverFilenameModule;
+  genres: GenreModule;
+  image_types: ImageTypeModule;
+  labels: LabelModule;
+  locations: LocationModule;
+  plays: PlayModule;
+  rescan: RescanModule;
+  tracks: TrackModule;
+  users: UserModule;
+} {
   return {
     albums: new AlbumModule(baseURL),
     artists: new ArtistModule(baseURL),
