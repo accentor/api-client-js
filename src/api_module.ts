@@ -123,7 +123,7 @@ export class ArtistModule extends CRUDModule<ArtistParams, Artist> {
     sourceId: number | string
   ): Promise<Artist> {
     return await httpPost<Record<string, never>, Artist>(
-      `{this.path}/${id}/merge?source_id=${sourceId}`,
+      `${this.url}/${id}/merge?source_id=${sourceId}`,
       auth,
       {}
     );
@@ -199,7 +199,7 @@ export class GenreModule extends CRUDModule<GenreParams, Genre> {
     sourceId: number
   ): Promise<Genre> {
     return await httpPost<Record<string, never>, Genre>(
-      `${this.path}/${id}/merge?source_id=${sourceId}`,
+      `${this.url}/${id}/merge?source_id=${sourceId}`,
       auth,
       {}
     );
@@ -231,7 +231,7 @@ export class LabelModule extends CRUDModule<LabelParams, Label> {
     sourceId: number
   ): Promise<Label> {
     return await httpPost<Record<string, never>, Label>(
-      `{this.path}/${id}/merge?source_id=${sourceId}`,
+      `${this.url}/${id}/merge?source_id=${sourceId}`,
       auth,
       {}
     );
@@ -250,11 +250,11 @@ export class PlayModule extends BaseModule {
   }
 
   index(auth: AuthInterface): AsyncGenerator<Play, Play, void> {
-    return indexGenerator<Play, Scope>(this.path, auth, new Scope());
+    return indexGenerator<Play, Scope>(this.url, auth, new Scope());
   }
 
   async create(auth: AuthInterface, object: PlayParams): Promise<Play> {
-    return await httpPost<PlayParams, Play>(this.path, auth, object);
+    return await httpPost<PlayParams, Play>(this.url, auth, object);
   }
 }
 
@@ -301,7 +301,7 @@ export class TrackModule extends CRUDModule<TrackParams, Track> {
     sourceId: number
   ): Promise<Track> {
     return await httpPost<Record<string, never>, Track>(
-      `{this.path}/${id}/merge?source_id=${sourceId}`,
+      `${this.url}/${id}/merge?source_id=${sourceId}`,
       auth,
       {}
     );
