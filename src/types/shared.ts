@@ -12,7 +12,7 @@ export type Image = {
 };
 
 export type ImageParams = {
-  data: string;
-  filename: string;
-  mimetype: string;
+  data: string | null;
+  filename?: string;
+  mimetype?: string;
 };
