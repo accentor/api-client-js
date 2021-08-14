@@ -3,7 +3,6 @@
     "allowSyntheticDefaultImports": true,
     "lib": ["es2020", "es6", "dom"],
     "target": "es2018",
-    "noEmit": true,
     "declaration": true,    
     "baseUrl": "./src",
     "paths": {
