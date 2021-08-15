@@ -1,8 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* We need to import mocha even if we don't use it */
-import * as mocha from "mocha";
-/* eslint-enable @typescript-eslint/no-unused-vars */
-
+import { setup, suite, test } from "mocha";
 import { assert } from "chai";
 
 import {
