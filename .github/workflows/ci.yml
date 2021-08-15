@@ -35,3 +35,16 @@ jobs:
       run: yarn install
     - name: build
       run: yarn build
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2.3.4
+    - name: Set up Node
+      uses: actions/setup-node@v2.2.0
+      with:
+        node-version: 'lts/*'
+        cache: 'yarn'
+    - name: Install dependencies
+      run: yarn install
+    - name: build
+      run: yarn test
