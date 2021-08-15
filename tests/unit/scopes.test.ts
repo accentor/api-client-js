@@ -3,7 +3,7 @@
 import * as mocha from "mocha";
 /* eslint-enable @typescript-eslint/no-unused-vars */
 
-import { expect } from "chai";
+import { assert } from "chai";
 
 import {
   AlbumsScope,
@@ -12,71 +12,95 @@ import {
   TracksScope,
 } from "../../src/scopes";
 
-describe("Scope", () => {
-  it("should correctly create scope from key and query", () => {
-    const scope = new Scope().addScope("key", "query");
-    expect(scope.finalQuery).to.equal("&key=query");
+suite("Scope", function () {
+  let scope;
+
+  setup(function () {
+    scope = new Scope();
   });
 
-  it("should correctly create scope from key and array of queries", () => {
-    const scope = new Scope().addScopesFromArray("key", ["1", "2", "3"]);
-    expect(scope.finalQuery).to.equal("&key=1&key=2&key=3");
+  test("should correctly create scope from key and query", function () {
+    scope.addScope("key", "query");
+    assert.equal(scope.finalQuery, "&key=query");
   });
 
-  it("should correctly combine multiple scopes", () => {
-    const scope = new Scope().addScope("key", "query");
+  test("should correctly create scope from key and array of queries", function () {
+    scope.addScopesFromArray("key", ["1", "2", "3"]);
+    assert.equal(scope.finalQuery, "&key=1&key=2&key=3");
+  });
+
+  test("should correctly combine multiple scopes", function () {
+    scope.addScope("key", "query");
     scope.addScope("key2", "query2");
-    expect(scope.finalQuery).to.equal("&key=query&key2=query2");
+    assert.equal(scope.finalQuery, "&key=query&key2=query2");
   });
 });
 
-describe("AlbumsScope", () => {
-  it("should return correct query for artist", () => {
-    const scope = new AlbumsScope().artist(1);
-    expect(scope.finalQuery).to.equal("&artist_id=1");
+suite("AlbumsScope", function () {
+  let scope;
+
+  setup(function () {
+    scope = new AlbumsScope();
   });
 
-  it("should return correct query for filter", () => {
-    const scope = new AlbumsScope().filter("test");
-    expect(scope.finalQuery).to.equal("&filter=test");
+  test("should return correct query for artist", function () {
+    scope.artist(1);
+    assert.equal(scope.finalQuery, "&artist_id=1");
   });
 
-  it("should return correct query for label", () => {
-    const scope = new AlbumsScope().label(1);
-    expect(scope.finalQuery).to.equal("&label=1");
+  test("should return correct query for filter", function () {
+    scope.filter("test");
+    assert.equal(scope.finalQuery, "&filter=test");
   });
 
-  it("should return correct query for labels", () => {
-    const scope = new AlbumsScope().labels([1, 2, 3]);
-    expect(scope.finalQuery).to.equal("&labels=1&labels=2&labels=3");
+  test("should return correct query for label", function () {
+    scope.label(1);
+    assert.equal(scope.finalQuery, "&label=1");
+  });
+
+  test("should return correct query for labels", function () {
+    scope.labels([1, 2, 3]);
+    assert.equal(scope.finalQuery, "&labels=1&labels=2&labels=3");
   });
 });
 
-describe("ArtistsScope", () => {
-  it("should return correct query for filter", () => {
-    const scope = new ArtistsScope().filter("test");
-    expect(scope.finalQuery).to.equal("&filter=test");
+suite("ArtistsScope", function () {
+  let scope;
+
+  setup(function () {
+    scope = new ArtistsScope();
+  });
+
+  test("should return correct query for filter", () => {
+    scope.filter("test");
+    assert.equal(scope.finalQuery, "&filter=test");
   });
 });
 
 describe("TracksScope", () => {
-  it("should return correct query for albums", () => {
-    const scope = new TracksScope().album(1);
-    expect(scope.finalQuery).to.equal("&album_id=1");
+  let scope;
+
+  setup(function () {
+    scope = new TracksScope();
   });
 
-  it("should return correct query for artists", () => {
-    const scope = new TracksScope().artist(1);
-    expect(scope.finalQuery).to.equal("&artist_id=1");
+  test("should return correct query for albums", () => {
+    scope.album(1);
+    assert.equal(scope.finalQuery, "&album_id=1");
   });
 
-  it("should return correct query for filter", () => {
-    const scope = new TracksScope().filter("test");
-    expect(scope.finalQuery).to.equal("&filter=test");
+  test("should return correct query for artists", () => {
+    scope.artist(1);
+    assert.equal(scope.finalQuery, "&artist_id=1");
   });
 
-  it("should return correct query for genre", () => {
-    const scope = new TracksScope().genre(1);
-    expect(scope.finalQuery).to.equal("&genre_id=1");
+  test("should return correct query for filter", () => {
+    scope.filter("test");
+    assert.equal(scope.finalQuery, "&filter=test");
+  });
+
+  test("should return correct query for genre", () => {
+    scope.genre(1);
+    assert.equal(scope.finalQuery, "&genre_id=1");
   });
 });
