@@ -48,3 +48,5 @@ jobs:
       run: yarn install
     - name: build
       run: yarn test
+    - name: report coverage
+      run: yarn coverage
