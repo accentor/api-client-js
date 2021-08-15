@@ -46,7 +46,7 @@ jobs:
         cache: 'yarn'
     - name: Install dependencies
       run: yarn install
-    - name: build
+    - name: test
       run: yarn test
     - name: report coverage
       run: yarn coverage
