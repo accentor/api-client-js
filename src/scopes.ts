@@ -40,6 +40,12 @@ export class ArtistsScope extends Scope {
   }
 }
 
+export class PlaysScope extends Scope {
+  album(id: number | string): this {
+    return this.addScope("album_id", id);
+  }
+}
+
 export class TracksScope extends Scope {
   album(id: number | string): this {
     return this.addScope("album_id", id);
