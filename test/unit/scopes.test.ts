@@ -73,7 +73,7 @@ suite("ArtistsScope", function () {
   });
 });
 
-describe("TracksScope", () => {
+suite("TracksScope", () => {
   let scope;
 
   setup(function () {
