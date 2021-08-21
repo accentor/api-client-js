@@ -25,7 +25,7 @@ suite("AlbumsModule", function () {
   test("should correctly call index path", async function () {
     const index = module.index({ device_id: "abc", secret: "123" });
     const response = await index.next();
-    assert.equal(response.value.length, 0);
     assert(response.done);
+    assert.equal(response.value.length, 0);
   });
 });
