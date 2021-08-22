@@ -15,7 +15,7 @@ fetchMock.get(
 
 import { AlbumModule } from "../../src/api_module";
 
-suite("AlbumsModule", function () {
+suite("AlbumModule", function () {
   let module;
 
   setup(function () {
