@@ -1,4 +1,4 @@
-import { setup, suite, test } from "mocha";
+import { setup, suite, test, teardown } from "mocha";
 import { assert } from "chai";
 import fetchMock from "fetch-mock";
 import { CodecModule } from "../../src/api_module";
@@ -9,6 +9,8 @@ suite("CodecModule", function () {
   setup(function () {
     module = new CodecModule("http://example.org/api");
   });
+
+  teardown(fetchMock.resetHistory);
 
   test("should correctly call index path", async function () {
     const index = module.index({ device_id: "abc", secret: "123" });
