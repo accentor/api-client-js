@@ -1,6 +1,5 @@
 import { suite, test } from "mocha";
 import { assert } from "chai";
-import fetchMock from "fetch-mock";
 import { createApiClient } from "../../src/index";
 
 suite("create API client", function () {
