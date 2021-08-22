@@ -5,7 +5,13 @@ import {
   httpPost,
   indexGenerator,
 } from "./http";
-import { AlbumsScope, ArtistsScope, Scope, TracksScope } from "./scopes";
+import {
+  AlbumsScope,
+  ArtistsScope,
+  PlaysScope,
+  Scope,
+  TracksScope,
+} from "./scopes";
 import {
   AuthInterface,
   AuthToken,
@@ -249,8 +255,11 @@ export class PlayModule extends BaseModule {
     super(baseURL, "plays");
   }
 
-  index(auth: AuthInterface): AsyncGenerator<Play, Play, void> {
-    return indexGenerator<Play, Scope>(this.url, auth, new Scope());
+  index(
+    auth: AuthInterface,
+    scope = new PlaysScope()
+  ): AsyncGenerator<Play, Play, void> {
+    return indexGenerator<Play, PlaysScope>(this.url, auth, scope);
   }
 
   async create(auth: AuthInterface, object: PlayParams): Promise<Play> {
