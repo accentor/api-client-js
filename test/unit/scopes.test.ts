@@ -4,6 +4,7 @@ import { assert } from "chai";
 import {
   AlbumsScope,
   ArtistsScope,
+  PlaysScope,
   Scope,
   TracksScope,
 } from "../../src/scopes";
@@ -70,6 +71,19 @@ suite("ArtistsScope", function () {
   test("should return correct query for filter", () => {
     scope.filter("test");
     assert.equal(scope.finalQuery, "&filter=test");
+  });
+});
+
+suite("PlaysScope", function () {
+  let scope;
+
+  setup(function () {
+    scope = new PlaysScope();
+  });
+
+  test("should return correct query for album", () => {
+    scope.album("1");
+    assert.equal(scope.finalQuery, "&album_id=1");
   });
 });
 
