@@ -1,18 +1,6 @@
 import { setup, suite, test } from "mocha";
 import { assert } from "chai";
 import fetchMock from "fetch-mock";
-global.fetch = fetchMock.sandbox();
-fetchMock.get(
-  {
-    url: "http://example.org/api/albums?page=1",
-    headers: { "x-secret": "123", "x-device-id": "abc" },
-  },
-  {
-    body: "[]",
-    headers: { "x-total-pages": 1 },
-  }
-);
-
 import { AlbumModule } from "../../src/api_module";
 
 suite("AlbumModule", function () {
@@ -27,5 +15,6 @@ suite("AlbumModule", function () {
     const response = await index.next();
     assert(response.done);
     assert.equal(response.value.length, 0);
+    assert.equal(fetchMock.lastUrl(), "http://example.org/api/albums?page=1");
   });
 });
