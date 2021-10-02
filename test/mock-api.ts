@@ -117,11 +117,11 @@ fetchMock.get(
 );
 fetchMock.get(
   {
-    url: "http://example.org/api/rescan",
+    url: "http://example.org/api/rescans?page=1",
     headers: { "x-secret": "123", "x-device-id": "abc" },
   },
   {
-    body: "{}",
+    body: "[]",
     headers: { "x-total-pages": 1 },
   }
 );
