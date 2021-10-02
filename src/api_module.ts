@@ -269,18 +269,31 @@ export class PlayModule extends BaseModule {
 
 export class RescanModule extends BaseModule {
   constructor(baseURL: string) {
-    super(baseURL, "rescan");
+    super(baseURL, "rescans");
   }
 
-  async start(auth: AuthInterface): Promise<Rescan> {
+  index(auth: AuthInterface): AsyncGenerator<Rescan, Rescan, void> {
+    return indexGenerator<Rescan, Scope>(this.url, auth, new Scope());
+  }
+
+  async startAll(auth: AuthInterface): Promise<Rescan> {
     return await httpPost<Record<string, never>, Rescan>(this.url, auth, {});
+  }
+
+  async start(auth: AuthInterface, id: number): Promise<Rescan> {
+    return await httpPost<Record<string, never>, Rescan>(
+      `${this.url}/${id}`,
+      auth,
+      {}
+    );
   }
 
   async show(
     auth: AuthInterface,
+    id: number,
     retryOptions: RetryOptions = {}
   ): Promise<Rescan> {
-    return await httpGet<Rescan>(this.url, auth, retryOptions);
+    return await httpGet<Rescan>(`${this.url}/${id}`, auth, retryOptions);
   }
 }
 
