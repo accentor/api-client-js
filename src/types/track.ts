@@ -23,6 +23,7 @@ type TrackArtistParams = {
   name: string;
   role: TrackArtistRole;
   order: number;
+  hidden: boolean;
 };
 
 type TrackArtist = TrackArtistParams & {
