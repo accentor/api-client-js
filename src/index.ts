@@ -29,7 +29,7 @@ export function createApiClient(baseURL: string): {
   labels: LabelModule;
   locations: LocationModule;
   plays: PlayModule;
-  rescan: RescanModule;
+  rescans: RescanModule;
   tracks: TrackModule;
   users: UserModule;
 } {
@@ -45,7 +45,7 @@ export function createApiClient(baseURL: string): {
     labels: new LabelModule(baseURL),
     locations: new LocationModule(baseURL),
     plays: new PlayModule(baseURL),
-    rescan: new RescanModule(baseURL),
+    rescans: new RescanModule(baseURL),
     tracks: new TrackModule(baseURL),
     users: new UserModule(baseURL),
   };

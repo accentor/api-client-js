@@ -4,4 +4,5 @@ export type Rescan = {
   processed: number;
   running: boolean;
   finished_at: Date;
+  location_id: number;
 };

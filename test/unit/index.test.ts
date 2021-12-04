@@ -17,7 +17,7 @@ suite("create API client", function () {
       "labels",
       "locations",
       "plays",
-      "rescan",
+      "rescans",
       "tracks",
       "users",
     ]);
