@@ -1,13 +1,13 @@
 import { setup, suite, test, teardown } from "mocha";
 import { assert } from "chai";
 import fetchMock from "fetch-mock";
-import { GenreModule } from "../../src/api_module";
+import { PlaylistModule } from "../../src/api_module";
 
-suite("GenreModule", function () {
+suite("PlaylistModule", function () {
   let module;
 
   setup(function () {
-    module = new GenreModule("http://example.org/api");
+    module = new PlaylistModule("http://example.org/api");
   });
 
   teardown(fetchMock.resetHistory);

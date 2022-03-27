@@ -107,6 +107,16 @@ fetchMock.get(
 );
 fetchMock.get(
   {
+    url: "http://example.org/api/playlists?page=1",
+    headers: { "x-secret": "123", "x-device-id": "abc" },
+  },
+  {
+    body: "[]",
+    headers: { "x-total-pages": 1 },
+  }
+);
+fetchMock.get(
+  {
     url: "http://example.org/api/plays?page=1",
     headers: { "x-secret": "123", "x-device-id": "abc" },
   },
