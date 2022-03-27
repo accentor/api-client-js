@@ -1,9 +1,9 @@
 import { Timestamps } from "./shared";
 
 export const enum PlaylistType {
-  ALBUM = 'album',
-  ARTIST = 'artist',
-  TRACK = 'track',
+  ALBUM = "album",
+  ARTIST = "artist",
+  TRACK = "track",
 }
 
 export interface PlaylistParams {
@@ -11,9 +11,9 @@ export interface PlaylistParams {
     name: string;
     description?: string;
     personal?: boolean;
-    playlist_type: PlaylistType
+    playlist_type: PlaylistType;
     item_ids: [];
-  }
+  };
 }
 
 export type Playlist = Timestamps & {
@@ -22,4 +22,4 @@ export type Playlist = Timestamps & {
   user_id: number | null;
   playlist_type: PlaylistType;
   item_ids: number[];
-}
+};
