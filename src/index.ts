@@ -9,6 +9,7 @@ import {
   ImageTypeModule,
   LabelModule,
   LocationModule,
+  PlaylistModule,
   PlayModule,
   RescanModule,
   TrackModule,
@@ -28,6 +29,7 @@ export function createApiClient(baseURL: string): {
   image_types: ImageTypeModule;
   labels: LabelModule;
   locations: LocationModule;
+  playlists: PlaylistModule;
   plays: PlayModule;
   rescans: RescanModule;
   tracks: TrackModule;
@@ -44,6 +46,7 @@ export function createApiClient(baseURL: string): {
     image_types: new ImageTypeModule(baseURL),
     labels: new LabelModule(baseURL),
     locations: new LocationModule(baseURL),
+    playlists: new PlaylistModule(baseURL),
     plays: new PlayModule(baseURL),
     rescans: new RescanModule(baseURL),
     tracks: new TrackModule(baseURL),

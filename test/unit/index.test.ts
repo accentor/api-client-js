@@ -16,6 +16,7 @@ suite("create API client", function () {
       "image_types",
       "labels",
       "locations",
+      "playlists",
       "plays",
       "rescans",
       "tracks",
