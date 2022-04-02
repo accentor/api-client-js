@@ -11,6 +11,7 @@ export interface PlaylistParams {
     name: string;
     description?: string;
     personal?: boolean;
+    private?: boolean;
     playlist_type: PlaylistType;
     item_ids: [];
   };
@@ -20,6 +21,7 @@ export type Playlist = Timestamps & {
   name: string;
   description: string | null;
   user_id: number | null;
+  private: boolean;
   playlist_type: PlaylistType;
   item_ids: number[];
 };
