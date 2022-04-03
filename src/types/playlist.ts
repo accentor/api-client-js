@@ -6,12 +6,17 @@ export const enum PlaylistType {
   TRACK = "track",
 }
 
+export const enum PlaylistAccess {
+  SHARED = "shared",
+  PERSONAL = "personal",
+  SECRET = "secret",
+}
+
 export interface PlaylistParams {
   playlist: {
     name: string;
     description?: string;
-    personal?: boolean;
-    private?: boolean;
+    access?: PlaylistAccess;
     playlist_type: PlaylistType;
     item_ids: [];
   };
@@ -20,8 +25,8 @@ export interface PlaylistParams {
 export type Playlist = Timestamps & {
   name: string;
   description: string | null;
-  user_id: number | null;
-  private: boolean;
+  user_id: number;
+  access: PlaylistAccess;
   playlist_type: PlaylistType;
   item_ids: number[];
 };
