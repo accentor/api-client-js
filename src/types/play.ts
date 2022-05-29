@@ -17,4 +17,5 @@ export type PlayStat = {
   track_id: number;
   user_id: number;
   count: number;
+  total_length: number;
 };
