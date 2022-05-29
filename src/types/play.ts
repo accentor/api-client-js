@@ -11,3 +11,10 @@ export type Play = {
   track_id: number;
   user_id: number;
 };
+
+export type PlayStat = {
+  last_played_at: Date;
+  track_id: number;
+  user_id: number;
+  count: number;
+};

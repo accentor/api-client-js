@@ -31,7 +31,7 @@ import { Genre, GenreParams } from "./types/genre";
 import { ImageType, ImageTypeParams } from "./types/image_type";
 import { Label, LabelParams } from "./types/label";
 import { Location, LocationParams } from "./types/location";
-import { Play, PlayParams } from "./types/play";
+import { Play, PlayParams, PlayStat } from "./types/play";
 import { Rescan } from "./types/rescan";
 import { Track, TrackParams } from "./types/track";
 import { User, UserParams } from "./types/user";
@@ -264,6 +264,17 @@ export class PlayModule extends BaseModule {
 
   async create(auth: AuthInterface, object: PlayParams): Promise<Play> {
     return await httpPost<PlayParams, Play>(this.url, auth, object);
+  }
+
+  stats(
+    auth: AuthInterface,
+    scope = new PlaysScope()
+  ): AsyncGenerator<PlayStat, PlayStat, void> {
+    return indexGenerator<PlayStat, PlaysScope>(
+      `${this.url}/stats`,
+      auth,
+      scope
+    );
   }
 }
 
