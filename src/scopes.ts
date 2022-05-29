@@ -44,6 +44,18 @@ export class PlaysScope extends Scope {
   album(id: number | string): this {
     return this.addScope("album_id", id);
   }
+
+  artist(id: number | string): this {
+    return this.addScope("artist_id", id);
+  }
+
+  playedBefore(date: Date): this {
+    return this.addScope("played_before", date.toISOString());
+  }
+
+  playedAfter(date: Date): this {
+    return this.addScope("played_after", date.toISOString());
+  }
 }
 
 export class TracksScope extends Scope {
