@@ -35,6 +35,7 @@ import { Play, PlayParams } from "./types/play";
 import { Rescan } from "./types/rescan";
 import { Track, TrackParams } from "./types/track";
 import { User, UserParams } from "./types/user";
+import { Playlist, PlaylistParams } from "./types/playlist";
 
 class BaseModule {
   path: string;
@@ -247,6 +248,12 @@ export class LabelModule extends CRUDModule<LabelParams, Label> {
 export class LocationModule extends CRDModule<LocationParams, Location> {
   constructor(baseURL: string) {
     super(baseURL, "locations");
+  }
+}
+
+export class PlaylistModule extends CRUDModule<PlaylistParams, Playlist> {
+  constructor(baseURL: string) {
+    super(baseURL, "playlists");
   }
 }
 
