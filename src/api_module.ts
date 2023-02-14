@@ -102,6 +102,18 @@ export class AlbumModule extends CRUDModule<AlbumParams, Album> {
       {}
     );
   }
+
+  async merge(
+    auth: AuthInterface,
+    id: number | string,
+    sourceId: number | string
+  ): Promise<Album> {
+    return await httpPost<Record<string, never>, Album>(
+      `${this.url}/${id}/merge?source_id=${sourceId}`,
+      auth,
+      {}
+    );
+  }
 }
 
 export class ArtistModule extends CRUDModule<ArtistParams, Artist> {
