@@ -12,6 +12,7 @@ export type Track = Timestamps & {
   length: number | null;
   bitrate: number | null;
   location_id: number | null;
+  audio_file_id: number | null;
   track_artists: TrackArtist[];
   filename: string | null;
   sample_rate: number | null;
