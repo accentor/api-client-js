@@ -19,7 +19,7 @@ suite("CoverFilenameModule", function () {
     assert.equal(response.value.length, 0);
     assert.equal(
       fetchMock.lastUrl(),
-      "http://example.org/api/cover_filenames?page=1"
+      "http://example.org/api/cover_filenames?page=1",
     );
   });
 });

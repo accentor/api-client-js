@@ -19,7 +19,7 @@ suite("ImageTypeModule", function () {
     assert.equal(response.value.length, 0);
     assert.equal(
       fetchMock.lastUrl(),
-      "http://example.org/api/image_types?page=1"
+      "http://example.org/api/image_types?page=1",
     );
   });
 });

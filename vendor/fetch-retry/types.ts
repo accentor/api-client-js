@@ -4,13 +4,13 @@
 export type RequestDelayFunction = (
   attempt: number,
   error: Error | null,
-  response: Response | null
+  response: Response | null,
 ) => number;
 
 export type RequestRetryOnFunction = (
   attempt: number,
   error: Error | null,
-  response: Response | null
+  response: Response | null,
 ) => boolean | Promise<boolean>;
 
 export interface RequestInitWithRetry extends RequestInit {

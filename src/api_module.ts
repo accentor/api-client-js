@@ -63,7 +63,7 @@ class CRDModule<Params, ReturnType> extends BaseModule {
   async read(
     auth: AuthInterface,
     id: number,
-    retryOptions: RetryOptions = {}
+    retryOptions: RetryOptions = {},
   ): Promise<ReturnType> {
     return await httpGet<ReturnType>(`${this.url}/${id}`, auth, retryOptions);
   }
@@ -78,7 +78,7 @@ class CRUDModule<Params, ReturnType> extends CRDModule<Params, ReturnType> {
     return await httpPatch<Params, ReturnType>(
       `${this.url}/${id}`,
       auth,
-      object
+      object,
     );
   }
 }
@@ -90,7 +90,7 @@ export class AlbumModule extends CRUDModule<AlbumParams, Album> {
 
   index(
     auth: AuthInterface,
-    scope = new AlbumsScope()
+    scope = new AlbumsScope(),
   ): AsyncGenerator<Album, Album, void> {
     return indexGenerator<Album, AlbumsScope>(this.url, auth, scope);
   }
@@ -99,19 +99,19 @@ export class AlbumModule extends CRUDModule<AlbumParams, Album> {
     return await httpPost<Record<string, never>, boolean>(
       `${this.url}/destroy_empty`,
       auth,
-      {}
+      {},
     );
   }
 
   async merge(
     auth: AuthInterface,
     id: number | string,
-    sourceId: number | string
+    sourceId: number | string,
   ): Promise<Album> {
     return await httpPost<Record<string, never>, Album>(
       `${this.url}/${id}/merge?source_id=${sourceId}`,
       auth,
-      {}
+      {},
     );
   }
 }
@@ -123,7 +123,7 @@ export class ArtistModule extends CRUDModule<ArtistParams, Artist> {
 
   index(
     auth: AuthInterface,
-    scope = new ArtistsScope()
+    scope = new ArtistsScope(),
   ): AsyncGenerator<Artist, Artist, void> {
     return indexGenerator<Artist, ArtistsScope>(this.url, auth, scope);
   }
@@ -132,19 +132,19 @@ export class ArtistModule extends CRUDModule<ArtistParams, Artist> {
     return await httpPost<Record<string, never>, boolean>(
       `${this.url}/destroy_empty`,
       auth,
-      {}
+      {},
     );
   }
 
   async merge(
     auth: AuthInterface,
     id: number | string,
-    sourceId: number | string
+    sourceId: number | string,
   ): Promise<Artist> {
     return await httpPost<Record<string, never>, Artist>(
       `${this.url}/${id}/merge?source_id=${sourceId}`,
       auth,
-      {}
+      {},
     );
   }
 }
@@ -165,7 +165,7 @@ export class AuthTokenModule extends BaseModule {
   async read(
     auth: AuthInterface,
     id: number,
-    retryOptions: RetryOptions = {}
+    retryOptions: RetryOptions = {},
   ): Promise<AuthToken> {
     return await httpGet<AuthToken>(`${this.url}/${id}`, auth, retryOptions);
   }
@@ -208,19 +208,19 @@ export class GenreModule extends CRUDModule<GenreParams, Genre> {
     return await httpPost<Record<string, never>, boolean>(
       `${this.url}/destroy_empty`,
       auth,
-      {}
+      {},
     );
   }
 
   async merge(
     auth: AuthInterface,
     id: number,
-    sourceId: number
+    sourceId: number,
   ): Promise<Genre> {
     return await httpPost<Record<string, never>, Genre>(
       `${this.url}/${id}/merge?source_id=${sourceId}`,
       auth,
-      {}
+      {},
     );
   }
 }
@@ -240,19 +240,19 @@ export class LabelModule extends CRUDModule<LabelParams, Label> {
     return await httpPost<Record<string, never>, boolean>(
       `${this.url}/destroy_empty`,
       auth,
-      {}
+      {},
     );
   }
 
   async merge(
     auth: AuthInterface,
     id: number,
-    sourceId: number
+    sourceId: number,
   ): Promise<Label> {
     return await httpPost<Record<string, never>, Label>(
       `${this.url}/${id}/merge?source_id=${sourceId}`,
       auth,
-      {}
+      {},
     );
   }
 }
@@ -276,7 +276,7 @@ export class PlayModule extends BaseModule {
 
   index(
     auth: AuthInterface,
-    scope = new PlaysScope()
+    scope = new PlaysScope(),
   ): AsyncGenerator<Play, Play, void> {
     return indexGenerator<Play, PlaysScope>(this.url, auth, scope);
   }
@@ -287,12 +287,12 @@ export class PlayModule extends BaseModule {
 
   stats(
     auth: AuthInterface,
-    scope = new PlaysScope()
+    scope = new PlaysScope(),
   ): AsyncGenerator<PlayStat, PlayStat, void> {
     return indexGenerator<PlayStat, PlaysScope>(
       `${this.url}/stats`,
       auth,
-      scope
+      scope,
     );
   }
 }
@@ -314,14 +314,14 @@ export class RescanModule extends BaseModule {
     return await httpPost<Record<string, never>, Rescan>(
       `${this.url}/${id}`,
       auth,
-      {}
+      {},
     );
   }
 
   async show(
     auth: AuthInterface,
     id: number,
-    retryOptions: RetryOptions = {}
+    retryOptions: RetryOptions = {},
   ): Promise<Rescan> {
     return await httpGet<Rescan>(`${this.url}/${id}`, auth, retryOptions);
   }
@@ -334,7 +334,7 @@ export class TrackModule extends CRUDModule<TrackParams, Track> {
 
   index(
     auth: AuthInterface,
-    scope = new TracksScope()
+    scope = new TracksScope(),
   ): AsyncGenerator<Track, Track, void> {
     return indexGenerator<Track, TracksScope>(this.url, auth, scope);
   }
@@ -343,19 +343,19 @@ export class TrackModule extends CRUDModule<TrackParams, Track> {
     return await httpPost<Record<string, never>, boolean>(
       `${this.url}/destroy_empty`,
       auth,
-      {}
+      {},
     );
   }
 
   async merge(
     auth: AuthInterface,
     id: number,
-    sourceId: number
+    sourceId: number,
   ): Promise<Track> {
     return await httpPost<Record<string, never>, Track>(
       `${this.url}/${id}/merge?source_id=${sourceId}`,
       auth,
-      {}
+      {},
     );
   }
 }

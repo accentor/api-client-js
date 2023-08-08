@@ -13,7 +13,7 @@ fetchMock.get(
   {
     body: "[]",
     headers: { "x-total-pages": 1 },
-  }
+  },
 );
 fetchMock.get(
   {
@@ -23,7 +23,7 @@ fetchMock.get(
   {
     body: "[]",
     headers: { "x-total-pages": 1 },
-  }
+  },
 );
 fetchMock.get(
   {
@@ -33,7 +33,7 @@ fetchMock.get(
   {
     body: "[]",
     headers: { "x-total-pages": 1 },
-  }
+  },
 );
 fetchMock.get(
   {
@@ -43,7 +43,7 @@ fetchMock.get(
   {
     body: "[]",
     headers: { "x-total-pages": 1 },
-  }
+  },
 );
 fetchMock.get(
   {
@@ -53,7 +53,7 @@ fetchMock.get(
   {
     body: "[]",
     headers: { "x-total-pages": 1 },
-  }
+  },
 );
 fetchMock.get(
   {
@@ -63,7 +63,7 @@ fetchMock.get(
   {
     body: "[]",
     headers: { "x-total-pages": 1 },
-  }
+  },
 );
 fetchMock.get(
   {
@@ -73,7 +73,7 @@ fetchMock.get(
   {
     body: "[]",
     headers: { "x-total-pages": 1 },
-  }
+  },
 );
 fetchMock.get(
   {
@@ -83,7 +83,7 @@ fetchMock.get(
   {
     body: "[]",
     headers: { "x-total-pages": 1 },
-  }
+  },
 );
 fetchMock.get(
   {
@@ -93,7 +93,7 @@ fetchMock.get(
   {
     body: "[]",
     headers: { "x-total-pages": 1 },
-  }
+  },
 );
 fetchMock.get(
   {
@@ -103,7 +103,7 @@ fetchMock.get(
   {
     body: "[]",
     headers: { "x-total-pages": 1 },
-  }
+  },
 );
 fetchMock.get(
   {
@@ -113,7 +113,7 @@ fetchMock.get(
   {
     body: "[]",
     headers: { "x-total-pages": 1 },
-  }
+  },
 );
 fetchMock.get(
   {
@@ -123,7 +123,7 @@ fetchMock.get(
   {
     body: "[]",
     headers: { "x-total-pages": 1 },
-  }
+  },
 );
 fetchMock.get(
   {
@@ -133,7 +133,7 @@ fetchMock.get(
   {
     body: "[]",
     headers: { "x-total-pages": 1 },
-  }
+  },
 );
 fetchMock.get(
   {
@@ -143,7 +143,7 @@ fetchMock.get(
   {
     body: "[]",
     headers: { "x-total-pages": 1 },
-  }
+  },
 );
 fetchMock.get(
   {
@@ -153,5 +153,5 @@ fetchMock.get(
   {
     body: "[]",
     headers: { "x-total-pages": 1 },
-  }
+  },
 );
