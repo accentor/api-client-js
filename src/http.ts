@@ -13,7 +13,7 @@ const fetchRetry = useFetchRetry(fetch, {
 export async function* indexGenerator<ReturnType, ST extends Scope>(
   path: string,
   auth: AuthInterface,
-  scope: ST
+  scope: ST,
 ): AsyncGenerator<ReturnType, ReturnType, void> {
   let page = 1;
   while (true) {
@@ -50,7 +50,7 @@ export async function* indexGenerator<ReturnType, ST extends Scope>(
 export async function httpGet<ReturnType>(
   path: string,
   auth: AuthInterface,
-  retryOptions: RetryOptions
+  retryOptions: RetryOptions,
 ): Promise<ReturnType> {
   const request = new Request(path, {
     ...retryOptions,
@@ -66,7 +66,7 @@ export async function httpGet<ReturnType>(
 export async function httpPost<Params, ReturnType>(
   path: string,
   auth: AuthInterface,
-  data: Params
+  data: Params,
 ): Promise<ReturnType> {
   const request = new Request(path, {
     method: "POST",
@@ -83,7 +83,7 @@ export async function httpPost<Params, ReturnType>(
 export async function httpPatch<Params, ReturnType>(
   path: string,
   auth: AuthInterface,
-  data: Params
+  data: Params,
 ): Promise<ReturnType> {
   const request = new Request(path, {
     method: "PATCH",
@@ -99,7 +99,7 @@ export async function httpPatch<Params, ReturnType>(
 
 export async function httpDelete(
   path: string,
-  auth: AuthInterface
+  auth: AuthInterface,
 ): Promise<boolean> {
   const request = new Request(path, {
     method: "DELETE",

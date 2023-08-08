@@ -19,7 +19,7 @@ suite("PlaylistModule", function () {
     assert.equal(response.value.length, 0);
     assert.equal(
       fetchMock.lastUrl(),
-      "http://example.org/api/playlists?page=1"
+      "http://example.org/api/playlists?page=1",
     );
   });
 });

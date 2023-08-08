@@ -19,7 +19,7 @@ suite("CodecConversionModule", function () {
     assert.equal(response.value.length, 0);
     assert.equal(
       fetchMock.lastUrl(),
-      "http://example.org/api/codec_conversions?page=1"
+      "http://example.org/api/codec_conversions?page=1",
     );
   });
 });
