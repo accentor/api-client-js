@@ -52,7 +52,7 @@ class BaseModule {
 }
 
 class CRDModule<Params, ReturnType> extends BaseModule {
-  index(auth: AuthInterface): AsyncGenerator<ReturnType, ReturnType, void> {
+  index(auth: AuthInterface): AsyncGenerator<ReturnType[], ReturnType[], void> {
     return indexGenerator<ReturnType, Scope>(this.url, auth, new Scope());
   }
 
@@ -91,7 +91,7 @@ export class AlbumModule extends CRUDModule<AlbumParams, Album> {
   index(
     auth: AuthInterface,
     scope = new AlbumsScope(),
-  ): AsyncGenerator<Album, Album, void> {
+  ): AsyncGenerator<Album[], Album[], void> {
     return indexGenerator<Album, AlbumsScope>(this.url, auth, scope);
   }
 
@@ -124,7 +124,7 @@ export class ArtistModule extends CRUDModule<ArtistParams, Artist> {
   index(
     auth: AuthInterface,
     scope = new ArtistsScope(),
-  ): AsyncGenerator<Artist, Artist, void> {
+  ): AsyncGenerator<Artist[], Artist[], void> {
     return indexGenerator<Artist, ArtistsScope>(this.url, auth, scope);
   }
 
@@ -154,7 +154,7 @@ export class AuthTokenModule extends BaseModule {
     super(baseURL, "auth_tokens");
   }
 
-  index(auth: AuthInterface): AsyncGenerator<AuthToken, AuthToken, void> {
+  index(auth: AuthInterface): AsyncGenerator<AuthToken[], AuthToken[], void> {
     return indexGenerator<AuthToken, Scope>(this.url, auth, new Scope());
   }
 
@@ -277,7 +277,7 @@ export class PlayModule extends BaseModule {
   index(
     auth: AuthInterface,
     scope = new PlaysScope(),
-  ): AsyncGenerator<Play, Play, void> {
+  ): AsyncGenerator<Play[], Play[], void> {
     return indexGenerator<Play, PlaysScope>(this.url, auth, scope);
   }
 
@@ -288,7 +288,7 @@ export class PlayModule extends BaseModule {
   stats(
     auth: AuthInterface,
     scope = new PlaysScope(),
-  ): AsyncGenerator<PlayStat, PlayStat, void> {
+  ): AsyncGenerator<PlayStat[], PlayStat[], void> {
     return indexGenerator<PlayStat, PlaysScope>(
       `${this.url}/stats`,
       auth,
@@ -302,7 +302,7 @@ export class RescanModule extends BaseModule {
     super(baseURL, "rescans");
   }
 
-  index(auth: AuthInterface): AsyncGenerator<Rescan, Rescan, void> {
+  index(auth: AuthInterface): AsyncGenerator<Rescan[], Rescan[], void> {
     return indexGenerator<Rescan, Scope>(this.url, auth, new Scope());
   }
 
@@ -335,7 +335,7 @@ export class TrackModule extends CRUDModule<TrackParams, Track> {
   index(
     auth: AuthInterface,
     scope = new TracksScope(),
-  ): AsyncGenerator<Track, Track, void> {
+  ): AsyncGenerator<Track[], Track[], void> {
     return indexGenerator<Track, TracksScope>(this.url, auth, scope);
   }
 

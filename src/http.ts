@@ -14,7 +14,7 @@ export async function* indexGenerator<ReturnType, ST extends Scope>(
   path: string,
   auth: AuthInterface,
   scope: ST,
-): AsyncGenerator<ReturnType, ReturnType, void> {
+): AsyncGenerator<ReturnType[], ReturnType[], void> {
   let page = 1;
   while (true) {
     let response: Response;
