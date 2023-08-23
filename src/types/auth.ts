@@ -17,7 +17,7 @@ export type AuthTokenWithSecret = AuthToken & {
 export interface AuthTokenParams {
   name: string;
   password: string;
-  auth_token: {
+  auth_token?: {
     user_agent: string;
   };
 }
