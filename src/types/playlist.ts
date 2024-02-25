@@ -22,6 +22,14 @@ export interface PlaylistParams {
   };
 }
 
+export interface PlaylistItemParams {
+  playlist_item: {
+    item_id: number;
+    item_type: "Album" | "Artist" | "Track";
+    playlist_id: number;
+  };
+}
+
 export type Playlist = Timestamps & {
   name: string;
   description: string | null;
