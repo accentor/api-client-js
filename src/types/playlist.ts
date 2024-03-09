@@ -23,10 +23,9 @@ export interface PlaylistParams {
 }
 
 export interface PlaylistItemParams {
-  playlist_item: {
+  playlist: {
     item_id: number;
     item_type: "Album" | "Artist" | "Track";
-    playlist_id: number;
   };
 }
 

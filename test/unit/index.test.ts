@@ -17,7 +17,6 @@ suite("create API client", function () {
       "labels",
       "locations",
       "playlists",
-      "playlist_items",
       "plays",
       "rescans",
       "tracks",

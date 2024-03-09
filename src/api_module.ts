@@ -267,15 +267,13 @@ export class PlaylistModule extends CRUDModule<PlaylistParams, Playlist> {
   constructor(baseURL: string) {
     super(baseURL, "playlists");
   }
-}
 
-export class PlaylistItemModule extends BaseModule {
-  constructor(baseURL: string) {
-    super(baseURL, "playlist_items");
-  }
-
-  async create(auth: AuthInterface, object: PlaylistItemParams): Promise<null> {
-    return await httpPost(this.url, auth, object);
+  async addItem(
+    auth: AuthInterface,
+    id: number,
+    object: PlaylistItemParams,
+  ): Promise<null> {
+    return await httpPost(`${this.url}/${id}`, auth, object);
   }
 }
 
