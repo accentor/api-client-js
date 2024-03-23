@@ -43,6 +43,6 @@
     "typescript": "^5.3.2"
   },
   "dependencies": {
-    "fetch-retry": "^5.0.6"
+    "fetch-retry": "^6.0.0"
   }
 }
