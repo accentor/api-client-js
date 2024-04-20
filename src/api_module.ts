@@ -35,7 +35,7 @@ import { Play, PlayParams, PlayStat } from "./types/play";
 import { Rescan } from "./types/rescan";
 import { Track, TrackParams } from "./types/track";
 import { User, UserParams } from "./types/user";
-import { Playlist, PlaylistParams } from "./types/playlist";
+import { Playlist, PlaylistParams, PlaylistItemParams } from "./types/playlist";
 
 class BaseModule {
   path: string;
@@ -266,6 +266,14 @@ export class LocationModule extends CRDModule<LocationParams, Location> {
 export class PlaylistModule extends CRUDModule<PlaylistParams, Playlist> {
   constructor(baseURL: string) {
     super(baseURL, "playlists");
+  }
+
+  async addItem(
+    auth: AuthInterface,
+    id: number,
+    object: PlaylistItemParams,
+  ): Promise<null> {
+    return await httpPost(`${this.url}/${id}`, auth, object);
   }
 }
 
