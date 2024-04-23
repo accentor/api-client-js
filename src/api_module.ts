@@ -273,7 +273,7 @@ export class PlaylistModule extends CRUDModule<PlaylistParams, Playlist> {
     id: number,
     object: PlaylistItemParams,
   ): Promise<null> {
-    return await httpPost(`${this.url}/${id}`, auth, object);
+    return await httpPost(`${this.url}/${id}/add_item`, auth, object);
   }
 }
 
