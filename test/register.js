@@ -3,7 +3,7 @@
  * In the test environment we need some tweaks.
  */
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const tsNode = require("ts-node");
 
 tsNode.register({
