@@ -1358,10 +1358,10 @@ fecha@^4.2.0:
   resolved "https://registry.yarnpkg.com/fecha/-/fecha-4.2.1.tgz#0a83ad8f86ef62a091e22bb5a039cd03d23eecce"
   integrity sha512-MMMQ0ludy/nBs1/o0zVOiKTpG7qMbonKUzjJgQFEuvq6INZ1OraKPRAWkBq5vlKLOUMpmNYG1JoN3oDPUQ9m3Q==
 
-fetch-mock@^10.0.7:
-  version "10.1.1"
-  resolved "https://registry.yarnpkg.com/fetch-mock/-/fetch-mock-10.1.1.tgz#09f5f14aff5587095fc1632c271523a5aff1e79c"
-  integrity sha512-R6MwxuGwlUe0K6GzdLY1Wa9voX/GbUBDZjNHBsvlBhrpXurCYpQN4EW0iFCmtWddDTuS0ubR93OtFSgy9E/L2A==
+fetch-mock@^11.0.2:
+  version "11.0.2"
+  resolved "https://registry.yarnpkg.com/fetch-mock/-/fetch-mock-11.0.2.tgz#89130fc910355b9f938b307bd448a6be524ba4c0"
+  integrity sha512-4+O+T9hb6WE521jfZDoURMhlDBRgJHMPOobC+FWSg2d1/qjbzfICs8bFGvjk4fGZcrKF2fEjATpJ5n3xCEvGMQ==
   dependencies:
     debug "^4.1.1"
     dequal "^2.0.3"
