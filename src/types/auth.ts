@@ -19,7 +19,7 @@ export interface AuthTokenParams {
   name: string;
   password: string;
   auth_token?: {
-    user_agent: string;
+    user_agent?: string;
     application?: string;
   };
 }
