@@ -8,6 +8,7 @@ export type AuthToken = {
   device_id: string;
   user_id: number;
   user_agent: string;
+  application?: string;
 };
 
 export type AuthTokenWithSecret = AuthToken & {
@@ -19,5 +20,6 @@ export interface AuthTokenParams {
   password: string;
   auth_token?: {
     user_agent: string;
+    application?: string;
   };
 }
