@@ -9,8 +9,7 @@
   "scripts": {
     "lint": "eslint . --fix",
     "build": "node ./build.js",
-    "test": "nyc ./node_modules/.bin/_mocha",
-    "coverage": "codecov"
+    "test": "nyc ./node_modules/.bin/_mocha"
   },
   "author": "Team Accentor <team@accentor.tech>",
   "contributors": [
@@ -27,7 +26,6 @@
     "@types/mocha": "^10.0.6",
     "@types/node": "^22.1.0",
     "chai": "^4.3.7",
-    "codecov": "^3.8.3",
     "esbuild": "^0.23.0",
     "eslint": "^9.1.0",
     "eslint-config-prettier": "^9.0.0",
