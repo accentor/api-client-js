@@ -48,5 +48,7 @@ jobs:
       run: yarn install
     - name: test
       run: yarn test
-    - name: report coverage
-      run: yarn coverage
+    - uses: codecov/codecov-action@v4
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }} # required
+        files: cobertura-coverage.xml

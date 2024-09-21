@@ -11,7 +11,8 @@
   "reporter": [
     "text-summary",
     "html",
-    "lcov"
+    "lcov",
+    "cobertura"
   ],
   "report-dir": "./coverage"
 }
