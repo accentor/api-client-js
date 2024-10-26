@@ -10,7 +10,7 @@ suite("PlaylistModule", function () {
     module = new PlaylistModule("http://example.org/api");
   });
 
-  teardown(fetchMock.resetHistory);
+  teardown(() => fetchMock.clearHistory());
 
   test("should correctly call index path", async function () {
     const index = module.index({ device_id: "abc", secret: "123" });
@@ -18,7 +18,7 @@ suite("PlaylistModule", function () {
     assert(response.done);
     assert.equal(response.value.length, 0);
     assert.equal(
-      fetchMock.lastUrl(),
+      fetchMock.callHistory.lastCall().url,
       "http://example.org/api/playlists?page=1",
     );
   });

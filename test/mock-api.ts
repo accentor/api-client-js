@@ -4,7 +4,7 @@ import fetchMock from "fetch-mock";
  * Set up mockFetch and add routes
  */
 
-global.fetch = fetchMock.sandbox();
+fetchMock.mockGlobal();
 fetchMock.get(
   {
     url: "http://example.org/api/albums?page=1",
