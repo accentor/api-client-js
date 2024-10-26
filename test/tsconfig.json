@@ -1,8 +1,12 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "esModuleInterop": true,
-    "module": "commonjs"
+    "allowSyntheticDefaultImports": true,
+    "lib": ["es2020", "es6", "dom"],
+    "target": "es2018",
+    "declaration": true,
+    "module": "node16",
+    "moduleResolution": "node"
   },
   "include": [
     "./**/*.test.ts"

@@ -1,6 +1,6 @@
 import { setup, suite, test, teardown } from "mocha";
 import { assert } from "chai";
-import fetchMock from "fetch-mock";
+import fetchMock, { CallLog } from "fetch-mock";
 import { AlbumModule } from "../../src/api_module";
 
 suite("AlbumModule", function () {
@@ -18,7 +18,7 @@ suite("AlbumModule", function () {
     assert(response.done);
     assert.equal(response.value.length, 0);
     assert.equal(
-      fetchMock.callHistory.lastCall().url,
+      (fetchMock.callHistory.lastCall() as CallLog).url,
       "http://example.org/api/albums?page=1",
     );
   });

@@ -7,8 +7,7 @@ import fetchMock from "fetch-mock";
 fetchMock.mockGlobal();
 fetchMock.get(
   {
-    url: "http://example.org/api/albums?page=1",
-    headers: { "x-secret": "123", "x-device-id": "abc" },
+    path: "/api/albums?page=1",
   },
   {
     body: "[]",
@@ -17,8 +16,7 @@ fetchMock.get(
 );
 fetchMock.get(
   {
-    url: "http://example.org/api/artists?page=1",
-    headers: { "x-secret": "123", "x-device-id": "abc" },
+    path: "/api/artists?page=1",
   },
   {
     body: "[]",
@@ -27,8 +25,7 @@ fetchMock.get(
 );
 fetchMock.get(
   {
-    url: "http://example.org/api/auth_tokens?page=1",
-    headers: { "x-secret": "123", "x-device-id": "abc" },
+    path: "/api/auth_tokens?page=1",
   },
   {
     body: "[]",
@@ -37,8 +34,7 @@ fetchMock.get(
 );
 fetchMock.get(
   {
-    url: "http://example.org/api/codec_conversions?page=1",
-    headers: { "x-secret": "123", "x-device-id": "abc" },
+    path: "/api/codec_conversions?page=1",
   },
   {
     body: "[]",
@@ -47,8 +43,7 @@ fetchMock.get(
 );
 fetchMock.get(
   {
-    url: "http://example.org/api/codecs?page=1",
-    headers: { "x-secret": "123", "x-device-id": "abc" },
+    path: "/api/codecs?page=1",
   },
   {
     body: "[]",
@@ -57,8 +52,7 @@ fetchMock.get(
 );
 fetchMock.get(
   {
-    url: "http://example.org/api/cover_filenames?page=1",
-    headers: { "x-secret": "123", "x-device-id": "abc" },
+    path: "/api/cover_filenames?page=1",
   },
   {
     body: "[]",
@@ -67,8 +61,7 @@ fetchMock.get(
 );
 fetchMock.get(
   {
-    url: "http://example.org/api/genres?page=1",
-    headers: { "x-secret": "123", "x-device-id": "abc" },
+    path: "/api/genres?page=1",
   },
   {
     body: "[]",
@@ -77,8 +70,7 @@ fetchMock.get(
 );
 fetchMock.get(
   {
-    url: "http://example.org/api/image_types?page=1",
-    headers: { "x-secret": "123", "x-device-id": "abc" },
+    path: "/api/image_types?page=1",
   },
   {
     body: "[]",
@@ -87,8 +79,7 @@ fetchMock.get(
 );
 fetchMock.get(
   {
-    url: "http://example.org/api/labels?page=1",
-    headers: { "x-secret": "123", "x-device-id": "abc" },
+    path: "/api/labels?page=1",
   },
   {
     body: "[]",
@@ -97,8 +88,7 @@ fetchMock.get(
 );
 fetchMock.get(
   {
-    url: "http://example.org/api/locations?page=1",
-    headers: { "x-secret": "123", "x-device-id": "abc" },
+    path: "/api/locations?page=1",
   },
   {
     body: "[]",
@@ -107,8 +97,7 @@ fetchMock.get(
 );
 fetchMock.get(
   {
-    url: "http://example.org/api/playlists?page=1",
-    headers: { "x-secret": "123", "x-device-id": "abc" },
+    path: "/api/playlists?page=1",
   },
   {
     body: "[]",
@@ -117,8 +106,7 @@ fetchMock.get(
 );
 fetchMock.get(
   {
-    url: "http://example.org/api/plays?page=1",
-    headers: { "x-secret": "123", "x-device-id": "abc" },
+    path: "/api/plays?page=1",
   },
   {
     body: "[]",
@@ -127,8 +115,7 @@ fetchMock.get(
 );
 fetchMock.get(
   {
-    url: "http://example.org/api/rescans?page=1",
-    headers: { "x-secret": "123", "x-device-id": "abc" },
+    path: "/api/rescans?page=1",
   },
   {
     body: "[]",
@@ -137,8 +124,7 @@ fetchMock.get(
 );
 fetchMock.get(
   {
-    url: "http://example.org/api/tracks?page=1",
-    headers: { "x-secret": "123", "x-device-id": "abc" },
+    path: "/api/tracks?page=1",
   },
   {
     body: "[]",
@@ -147,8 +133,7 @@ fetchMock.get(
 );
 fetchMock.get(
   {
-    url: "http://example.org/api/users?page=1",
-    headers: { "x-secret": "123", "x-device-id": "abc" },
+    path: "/api/users?page=1",
   },
   {
     body: "[]",
