@@ -10,13 +10,16 @@ suite("ArtistModule", function () {
     module = new ArtistModule("http://example.org/api");
   });
 
-  teardown(fetchMock.resetHistory);
+  teardown(() => fetchMock.clearHistory());
 
   test("should correctly call index path", async function () {
     const index = module.index({ device_id: "abc", secret: "123" });
     const response = await index.next();
     assert(response.done);
     assert.equal(response.value.length, 0);
-    assert.equal(fetchMock.lastUrl(), "http://example.org/api/artists?page=1");
+    assert.equal(
+      fetchMock.callHistory.lastCall().url,
+      "http://example.org/api/artists?page=1",
+    );
   });
 });
