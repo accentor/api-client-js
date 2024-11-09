@@ -1358,9 +1358,9 @@ fecha@^4.2.0:
   integrity sha512-MMMQ0ludy/nBs1/o0zVOiKTpG7qMbonKUzjJgQFEuvq6INZ1OraKPRAWkBq5vlKLOUMpmNYG1JoN3oDPUQ9m3Q==
 
 fetch-mock@^12.0.0:
-  version "12.0.2"
-  resolved "https://registry.yarnpkg.com/fetch-mock/-/fetch-mock-12.0.2.tgz#380363c7a79e8d9f87d9d0267717eef56a3bbe64"
-  integrity sha512-9KVq/Scz06A+ThORLA/J/EACiPzLdSn6DeLV61hni57kd3DXhQVCtkpj4LgwES+8osEVEfcqA6LwdSX2FYVK7w==
+  version "12.1.0"
+  resolved "https://registry.yarnpkg.com/fetch-mock/-/fetch-mock-12.1.0.tgz#a63b524093a16a6757a8bc17f593a5ca13835193"
+  integrity sha512-xKcKpS9JIfA/vtYRGZtNXIYVHM7Ta/06e6tClSrJoOlU/46pribn1wmW2lDZkqY6MtloUSpeRzy+TbwSKxcvmQ==
   dependencies:
     "@types/glob-to-regexp" "^0.4.4"
     dequal "^2.0.3"
