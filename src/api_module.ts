@@ -13,10 +13,10 @@ import {
   TracksScope,
 } from "./scopes";
 import {
-  AuthInterface,
+  ApiToken,
   AuthToken,
   AuthTokenParams,
-  AuthTokenWithSecret,
+  AuthTokenWithToken,
 } from "./types/auth";
 import { AlbumParams, Album } from "./types/album";
 import { RetryOptions } from "./types/fetch_retry";
@@ -52,32 +52,36 @@ class BaseModule {
 }
 
 class CRDModule<Params, ReturnType> extends BaseModule {
-  index(auth: AuthInterface): AsyncGenerator<ReturnType[], ReturnType[], void> {
-    return indexGenerator<ReturnType, Scope>(this.url, auth, new Scope());
+  index(apiToken: ApiToken): AsyncGenerator<ReturnType[], ReturnType[], void> {
+    return indexGenerator<ReturnType, Scope>(this.url, apiToken, new Scope());
   }
 
-  async create(auth: AuthInterface, object: Params): Promise<ReturnType> {
-    return await httpPost<Params, ReturnType>(this.url, auth, object);
+  async create(apiToken: ApiToken, object: Params): Promise<ReturnType> {
+    return await httpPost<Params, ReturnType>(this.url, apiToken, object);
   }
 
   async read(
-    auth: AuthInterface,
+    apiToken: ApiToken,
     id: number,
     retryOptions: RetryOptions = {},
   ): Promise<ReturnType> {
-    return await httpGet<ReturnType>(`${this.url}/${id}`, auth, retryOptions);
+    return await httpGet<ReturnType>(
+      `${this.url}/${id}`,
+      apiToken,
+      retryOptions,
+    );
   }
 
-  async destroy(auth: AuthInterface, id: number | string): Promise<boolean> {
-    return await httpDelete(`${this.url}/${id}`, auth);
+  async destroy(apiToken: ApiToken, id: number | string): Promise<boolean> {
+    return await httpDelete(`${this.url}/${id}`, apiToken);
   }
 }
 
 class CRUDModule<Params, ReturnType> extends CRDModule<Params, ReturnType> {
-  async update(auth: AuthInterface, id: number, object: Params) {
+  async update(apiToken: ApiToken, id: number, object: Params) {
     return await httpPatch<Params, ReturnType>(
       `${this.url}/${id}`,
-      auth,
+      apiToken,
       object,
     );
   }
@@ -89,28 +93,28 @@ export class AlbumModule extends CRUDModule<AlbumParams, Album> {
   }
 
   index(
-    auth: AuthInterface,
+    apiToken: ApiToken,
     scope = new AlbumsScope(),
   ): AsyncGenerator<Album[], Album[], void> {
-    return indexGenerator<Album, AlbumsScope>(this.url, auth, scope);
+    return indexGenerator<Album, AlbumsScope>(this.url, apiToken, scope);
   }
 
-  async destroyEmpty(auth: AuthInterface): Promise<boolean> {
+  async destroyEmpty(apiToken: ApiToken): Promise<boolean> {
     return await httpPost<Record<string, never>, boolean>(
       `${this.url}/destroy_empty`,
-      auth,
+      apiToken,
       {},
     );
   }
 
   async merge(
-    auth: AuthInterface,
+    apiToken: ApiToken,
     id: number | string,
     sourceId: number | string,
   ): Promise<Album> {
     return await httpPost<Record<string, never>, Album>(
       `${this.url}/${id}/merge?source_id=${sourceId}`,
-      auth,
+      apiToken,
       {},
     );
   }
@@ -122,28 +126,28 @@ export class ArtistModule extends CRUDModule<ArtistParams, Artist> {
   }
 
   index(
-    auth: AuthInterface,
+    apiToken: ApiToken,
     scope = new ArtistsScope(),
   ): AsyncGenerator<Artist[], Artist[], void> {
-    return indexGenerator<Artist, ArtistsScope>(this.url, auth, scope);
+    return indexGenerator<Artist, ArtistsScope>(this.url, apiToken, scope);
   }
 
-  async destroyEmpty(auth: AuthInterface): Promise<boolean> {
+  async destroyEmpty(apiToken: ApiToken): Promise<boolean> {
     return await httpPost<Record<string, never>, boolean>(
       `${this.url}/destroy_empty`,
-      auth,
+      apiToken,
       {},
     );
   }
 
   async merge(
-    auth: AuthInterface,
+    apiToken: ApiToken,
     id: number | string,
     sourceId: number | string,
   ): Promise<Artist> {
     return await httpPost<Record<string, never>, Artist>(
       `${this.url}/${id}/merge?source_id=${sourceId}`,
-      auth,
+      apiToken,
       {},
     );
   }
@@ -154,24 +158,28 @@ export class AuthTokenModule extends BaseModule {
     super(baseURL, "auth_tokens");
   }
 
-  index(auth: AuthInterface): AsyncGenerator<AuthToken[], AuthToken[], void> {
-    return indexGenerator<AuthToken, Scope>(this.url, auth, new Scope());
+  index(apiToken: ApiToken): AsyncGenerator<AuthToken[], AuthToken[], void> {
+    return indexGenerator<AuthToken, Scope>(this.url, apiToken, new Scope());
   }
 
-  async create(object: AuthTokenParams): Promise<AuthTokenWithSecret> {
-    return await httpPost(this.url, {} as AuthInterface, object);
+  async create(object: AuthTokenParams): Promise<AuthTokenWithToken> {
+    return await httpPost(this.url, "", object);
   }
 
   async read(
-    auth: AuthInterface,
+    apiToken: ApiToken,
     id: number,
     retryOptions: RetryOptions = {},
   ): Promise<AuthToken> {
-    return await httpGet<AuthToken>(`${this.url}/${id}`, auth, retryOptions);
+    return await httpGet<AuthToken>(
+      `${this.url}/${id}`,
+      apiToken,
+      retryOptions,
+    );
   }
 
-  async destroy(auth: AuthInterface, id: number | string): Promise<boolean> {
-    return await httpDelete(`${this.url}/${id}`, auth);
+  async destroy(apiToken: ApiToken, id: number | string): Promise<boolean> {
+    return await httpDelete(`${this.url}/${id}`, apiToken);
   }
 }
 
@@ -204,22 +212,22 @@ export class GenreModule extends CRUDModule<GenreParams, Genre> {
     super(baseURL, "genres");
   }
 
-  async destroyEmpty(auth: AuthInterface): Promise<boolean> {
+  async destroyEmpty(apiToken: ApiToken): Promise<boolean> {
     return await httpPost<Record<string, never>, boolean>(
       `${this.url}/destroy_empty`,
-      auth,
+      apiToken,
       {},
     );
   }
 
   async merge(
-    auth: AuthInterface,
+    apiToken: ApiToken,
     id: number,
     sourceId: number,
   ): Promise<Genre> {
     return await httpPost<Record<string, never>, Genre>(
       `${this.url}/${id}/merge?source_id=${sourceId}`,
-      auth,
+      apiToken,
       {},
     );
   }
@@ -236,22 +244,22 @@ export class LabelModule extends CRUDModule<LabelParams, Label> {
     super(baseURL, "labels");
   }
 
-  async destroyEmpty(auth: AuthInterface): Promise<boolean> {
+  async destroyEmpty(apiToken: ApiToken): Promise<boolean> {
     return await httpPost<Record<string, never>, boolean>(
       `${this.url}/destroy_empty`,
-      auth,
+      apiToken,
       {},
     );
   }
 
   async merge(
-    auth: AuthInterface,
+    apiToken: ApiToken,
     id: number,
     sourceId: number,
   ): Promise<Label> {
     return await httpPost<Record<string, never>, Label>(
       `${this.url}/${id}/merge?source_id=${sourceId}`,
-      auth,
+      apiToken,
       {},
     );
   }
@@ -269,11 +277,11 @@ export class PlaylistModule extends CRUDModule<PlaylistParams, Playlist> {
   }
 
   async addItem(
-    auth: AuthInterface,
+    apiToken: ApiToken,
     id: number,
     object: PlaylistItemParams,
   ): Promise<null> {
-    return await httpPost(`${this.url}/${id}/add_item`, auth, object);
+    return await httpPost(`${this.url}/${id}/add_item`, apiToken, object);
   }
 }
 
@@ -283,23 +291,23 @@ export class PlayModule extends BaseModule {
   }
 
   index(
-    auth: AuthInterface,
+    apiToken: ApiToken,
     scope = new PlaysScope(),
   ): AsyncGenerator<Play[], Play[], void> {
-    return indexGenerator<Play, PlaysScope>(this.url, auth, scope);
+    return indexGenerator<Play, PlaysScope>(this.url, apiToken, scope);
   }
 
-  async create(auth: AuthInterface, object: PlayParams): Promise<Play> {
-    return await httpPost<PlayParams, Play>(this.url, auth, object);
+  async create(apiToken: ApiToken, object: PlayParams): Promise<Play> {
+    return await httpPost<PlayParams, Play>(this.url, apiToken, object);
   }
 
   stats(
-    auth: AuthInterface,
+    apiToken: ApiToken,
     scope = new PlaysScope(),
   ): AsyncGenerator<PlayStat[], PlayStat[], void> {
     return indexGenerator<PlayStat, PlaysScope>(
       `${this.url}/stats`,
-      auth,
+      apiToken,
       scope,
     );
   }
@@ -310,28 +318,32 @@ export class RescanModule extends BaseModule {
     super(baseURL, "rescans");
   }
 
-  index(auth: AuthInterface): AsyncGenerator<Rescan[], Rescan[], void> {
-    return indexGenerator<Rescan, Scope>(this.url, auth, new Scope());
+  index(apiToken: ApiToken): AsyncGenerator<Rescan[], Rescan[], void> {
+    return indexGenerator<Rescan, Scope>(this.url, apiToken, new Scope());
   }
 
-  async startAll(auth: AuthInterface): Promise<Rescan> {
-    return await httpPost<Record<string, never>, Rescan>(this.url, auth, {});
+  async startAll(apiToken: ApiToken): Promise<Rescan> {
+    return await httpPost<Record<string, never>, Rescan>(
+      this.url,
+      apiToken,
+      {},
+    );
   }
 
-  async start(auth: AuthInterface, id: number): Promise<Rescan> {
+  async start(apiToken: ApiToken, id: number): Promise<Rescan> {
     return await httpPost<Record<string, never>, Rescan>(
       `${this.url}/${id}`,
-      auth,
+      apiToken,
       {},
     );
   }
 
   async show(
-    auth: AuthInterface,
+    apiToken: ApiToken,
     id: number,
     retryOptions: RetryOptions = {},
   ): Promise<Rescan> {
-    return await httpGet<Rescan>(`${this.url}/${id}`, auth, retryOptions);
+    return await httpGet<Rescan>(`${this.url}/${id}`, apiToken, retryOptions);
   }
 }
 
@@ -341,28 +353,28 @@ export class TrackModule extends CRUDModule<TrackParams, Track> {
   }
 
   index(
-    auth: AuthInterface,
+    apiToken: ApiToken,
     scope = new TracksScope(),
   ): AsyncGenerator<Track[], Track[], void> {
-    return indexGenerator<Track, TracksScope>(this.url, auth, scope);
+    return indexGenerator<Track, TracksScope>(this.url, apiToken, scope);
   }
 
-  async destroyEmpty(auth: AuthInterface): Promise<boolean> {
+  async destroyEmpty(apiToken: ApiToken): Promise<boolean> {
     return await httpPost<Record<string, never>, boolean>(
       `${this.url}/destroy_empty`,
-      auth,
+      apiToken,
       {},
     );
   }
 
   async merge(
-    auth: AuthInterface,
+    apiToken: ApiToken,
     id: number,
     sourceId: number,
   ): Promise<Track> {
     return await httpPost<Record<string, never>, Track>(
       `${this.url}/${id}/merge?source_id=${sourceId}`,
-      auth,
+      apiToken,
       {},
     );
   }
