@@ -13,7 +13,7 @@ suite("GenreModule", function () {
   teardown(() => fetchMock.clearHistory());
 
   test("should correctly call index path", async function () {
-    const index = module.index({ device_id: "abc", secret: "123" });
+    const index = module.index("123");
     const response = await index.next();
     assert(response.done);
     assert.equal(response.value.length, 0);

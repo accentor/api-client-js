@@ -1,6 +1,6 @@
 import useFetchRetry from "fetch-retry";
 import { Scope } from "./scopes";
-import { AuthInterface } from "./types/auth";
+import { ApiToken } from "./types/auth";
 import { RetryOptions } from "./types/fetch_retry";
 
 const fetchRetry = useFetchRetry(fetch, {
@@ -12,7 +12,7 @@ const fetchRetry = useFetchRetry(fetch, {
 
 export async function* indexGenerator<ReturnType, ST extends Scope>(
   path: string,
-  auth: AuthInterface,
+  apiToken: ApiToken,
   scope: ST,
 ): AsyncGenerator<ReturnType[], ReturnType[], void> {
   let page = 1;
@@ -23,8 +23,7 @@ export async function* indexGenerator<ReturnType, ST extends Scope>(
         retries: 5,
         method: "GET",
         headers: {
-          "x-secret": auth.secret,
-          "x-device-id": auth.device_id,
+          Authorization: `Bearer ${apiToken}`,
         },
       });
     } catch (error) {
@@ -49,15 +48,14 @@ export async function* indexGenerator<ReturnType, ST extends Scope>(
 
 export async function httpGet<ReturnType>(
   path: string,
-  auth: AuthInterface,
+  apiToken: ApiToken,
   retryOptions: RetryOptions,
 ): Promise<ReturnType> {
   const request = new Request(path, {
     ...retryOptions,
     method: "GET",
     headers: {
-      "x-secret": auth.secret,
-      "x-device-id": auth.device_id,
+      Authorization: `Bearer ${apiToken}`,
     },
   });
   return await resolve<ReturnType>(request);
@@ -65,15 +63,14 @@ export async function httpGet<ReturnType>(
 
 export async function httpPost<Params, ReturnType>(
   path: string,
-  auth: AuthInterface,
+  apiToken: ApiToken,
   data: Params,
 ): Promise<ReturnType> {
   const request = new Request(path, {
     method: "POST",
     headers: {
       "content-type": "application/json",
-      "x-secret": auth.secret,
-      "x-device-id": auth.device_id,
+      Authorization: `Bearer ${apiToken}`,
     },
     body: JSON.stringify(data),
   });
@@ -82,15 +79,14 @@ export async function httpPost<Params, ReturnType>(
 
 export async function httpPatch<Params, ReturnType>(
   path: string,
-  auth: AuthInterface,
+  apiToken: ApiToken,
   data: Params,
 ): Promise<ReturnType> {
   const request = new Request(path, {
     method: "PATCH",
     headers: {
       "content-type": "application/json",
-      "x-secret": auth.secret,
-      "x-device-id": auth.device_id,
+      Authorization: `Bearer ${apiToken}`,
     },
     body: JSON.stringify(data),
   });
@@ -99,13 +95,12 @@ export async function httpPatch<Params, ReturnType>(
 
 export async function httpDelete(
   path: string,
-  auth: AuthInterface,
+  apiToken: ApiToken,
 ): Promise<boolean> {
   const request = new Request(path, {
     method: "DELETE",
     headers: {
-      "x-secret": auth.secret,
-      "x-device-id": auth.device_id,
+      Authorization: `Bearer ${apiToken}`,
     },
   });
   return await resolve<boolean>(request);
