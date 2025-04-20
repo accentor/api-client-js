@@ -19,7 +19,7 @@ export type Track = Timestamps & {
   bit_depth: number | null;
 };
 
-type TrackArtistParams = {
+export type TrackArtistParams = {
   artist_id: number;
   name: string;
   role: TrackArtistRole;
@@ -27,7 +27,7 @@ type TrackArtistParams = {
   hidden: boolean;
 };
 
-type TrackArtist = TrackArtistParams & {
+export type TrackArtist = TrackArtistParams & {
   normalized_name: string;
 };
 
