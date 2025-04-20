@@ -13,29 +13,41 @@ import {
   TracksScope,
 } from "./scopes";
 import {
+  Album,
+  AlbumParams,
   ApiToken,
+  Artist,
+  ArtistParams,
   AuthToken,
   AuthTokenParams,
   AuthTokenWithToken,
-} from "./types/auth";
-import { AlbumParams, Album } from "./types/album";
-import { RetryOptions } from "./types/fetch_retry";
-import { ArtistParams, Artist } from "./types/artist";
-import {
+  Codec,
   CodecConversion,
   CodecConversionParams,
-} from "./types/codec_conversion";
-import { Codec, CodecParams } from "./types/codec";
-import { CoverFilename, CoverFilenameParams } from "./types/cover_filename";
-import { Genre, GenreParams } from "./types/genre";
-import { ImageType, ImageTypeParams } from "./types/image_type";
-import { Label, LabelParams } from "./types/label";
-import { Location, LocationParams } from "./types/location";
-import { Play, PlayParams, PlayStat } from "./types/play";
-import { Rescan } from "./types/rescan";
-import { Track, TrackParams } from "./types/track";
-import { User, UserParams } from "./types/user";
-import { Playlist, PlaylistParams, PlaylistItemParams } from "./types/playlist";
+  CodecParams,
+  CoverFilename,
+  CoverFilenameParams,
+  Genre,
+  GenreParams,
+  ImageType,
+  ImageTypeParams,
+  Label,
+  LabelParams,
+  Location,
+  LocationParams,
+  Play,
+  Playlist,
+  PlaylistItemParams,
+  PlaylistParams,
+  PlayParams,
+  PlayStat,
+  Rescan,
+  RetryOptions,
+  Track,
+  TrackParams,
+  User,
+  UserParams,
+} from "./types";
 
 class BaseModule {
   path: string;
