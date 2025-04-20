@@ -26,19 +26,19 @@ export type Album = Timestamps &
     album_labels: AlbumLabel[];
   };
 
-type AlbumArtistParams = {
+export type AlbumArtistParams = {
   artist_id: number;
   name: string;
   order: number;
   separator?: string;
 };
 
-type AlbumArtist = AlbumArtistParams & {
+export type AlbumArtist = AlbumArtistParams & {
   normalized_name: string;
   separator: string | null;
 };
 
-type AlbumLabel = {
+export type AlbumLabel = {
   label_id: number;
   catalogue_number: string | null;
 };

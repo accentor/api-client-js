@@ -17,6 +17,7 @@ import {
 } from "./api_module";
 export * from "./api_module";
 export * from "./scopes";
+export * from "./types";
 
 export function createApiClient(baseURL: string): {
   albums: AlbumModule;
