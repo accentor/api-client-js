@@ -8,8 +8,6 @@ updates:
     time: "08:00"
     timezone: Europe/Brussels
   open-pull-requests-limit: 10
-  reviewers:
-  - chvp
   groups:
     types:
       patterns:
@@ -27,5 +25,3 @@ updates:
     time: "08:00"
     timezone: Europe/Brussels
   open-pull-requests-limit: 10
-  reviewers:
-  - chvp
