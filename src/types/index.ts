@@ -15,3 +15,7 @@ export * from "./rescan";
 export * from "./shared";
 export * from "./track";
 export * from "./user";
+
+export type UpdateParams<T> = {
+  [P in keyof T]: Partial<T[P]>;
+};
