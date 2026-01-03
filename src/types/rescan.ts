@@ -3,6 +3,6 @@ export type Rescan = {
   warning_text: string | null;
   processed: number;
   running: boolean;
-  finished_at: Date;
+  finished_at: string;
   location_id: number;
 };
