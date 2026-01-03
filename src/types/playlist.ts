@@ -30,6 +30,7 @@ export interface PlaylistItemParams {
 }
 
 export type Playlist = Timestamps & {
+  id: number;
   name: string;
   description: string | null;
   user_id: number;
