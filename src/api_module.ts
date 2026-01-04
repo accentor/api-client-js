@@ -45,6 +45,7 @@ import {
   RetryOptions,
   Track,
   TrackParams,
+  UpdateParams,
   User,
   UserParams,
 } from "./types";
@@ -90,8 +91,8 @@ class CRDModule<Params, ReturnType> extends BaseModule {
 }
 
 class CRUDModule<Params, ReturnType> extends CRDModule<Params, ReturnType> {
-  async update(apiToken: ApiToken, id: number, object: Params) {
-    return await httpPatch<Params, ReturnType>(
+  async update(apiToken: ApiToken, id: number, object: UpdateParams<Params>) {
+    return await httpPatch<UpdateParams<Params>, ReturnType>(
       `${this.url}/${id}`,
       apiToken,
       object,
