@@ -5,6 +5,10 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -15,6 +19,7 @@ jobs:
       with:
         node-version: 'lts/*'
         cache: 'yarn'
+        registry-url: 'https://registry.npmjs.org'
     - name: Install dependencies
       run: yarn install
     - name: Build
@@ -33,7 +38,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Publish to NPM
-      uses: JS-DevTools/npm-publish@v4
-      with:
-        token: ${{ secrets.NPM_AUTH_TOKEN }}
-        access: public
+      run: yarn publish
