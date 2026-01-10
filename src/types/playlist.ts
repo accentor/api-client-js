@@ -18,7 +18,7 @@ export interface PlaylistParams {
     description?: string;
     access?: PlaylistAccess;
     playlist_type: PlaylistType;
-    item_ids: [];
+    item_ids: number[];
   };
 }
 
