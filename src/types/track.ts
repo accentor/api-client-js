@@ -46,7 +46,7 @@ export interface TrackParams {
     title: string;
     number: number;
     album_id: number;
-    review_comment?: string;
+    review_comment?: string | null;
     genre_ids: number[];
     track_artists: TrackArtistParams[];
   };
