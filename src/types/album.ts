@@ -4,9 +4,9 @@ export interface AlbumParams {
   album: {
     title: string;
     release: string;
-    review_comment?: string;
-    edition?: string;
-    edition_description?: string;
+    review_comment?: string | null;
+    edition?: string | null;
+    edition_description?: string | null;
     image?: ImageParams;
     album_artists: AlbumArtistParams[];
     album_labels: AlbumLabel[];

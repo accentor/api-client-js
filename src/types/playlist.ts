@@ -15,7 +15,7 @@ export const enum PlaylistAccess {
 export interface PlaylistParams {
   playlist: {
     name: string;
-    description?: string;
+    description?: string | null;
     access?: PlaylistAccess;
     playlist_type: PlaylistType;
     item_ids: number[];
