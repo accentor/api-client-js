@@ -3,7 +3,7 @@ import { Image, ImageParams, Timestamps } from "./shared";
 export interface ArtistParams {
   artist: {
     name: string;
-    review_comment?: string;
+    review_comment?: string | null;
     image?: ImageParams;
   };
 }
