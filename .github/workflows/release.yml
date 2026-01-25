@@ -20,6 +20,8 @@ jobs:
         node-version: 'lts/*'
         cache: 'yarn'
         registry-url: 'https://registry.npmjs.org'
+    - name: Update npm to latest version for OIDC support
+      run: npm install -g npm@latest
     - name: Install dependencies
       run: yarn install
     - name: Build
