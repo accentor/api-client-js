@@ -52,3 +52,16 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }} # required
         files: cobertura-coverage.xml
+  type-check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6.0.2
+    - name: Set up Node
+      uses: actions/setup-node@v6.4.0
+      with:
+        node-version: 'lts/*'
+        cache: 'yarn'
+    - name: Install dependencies
+      run: yarn install
+    - name: type-check
+      run: yarn type-check

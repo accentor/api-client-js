@@ -8,9 +8,10 @@
   "repository": "github:accentor/api-client-js",
   "scripts": {
     "lint": "eslint . --fix",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "dev": "vite build --watch",
-    "test": "nyc ./node_modules/.bin/_mocha"
+    "test": "nyc ./node_modules/.bin/_mocha",
+    "type-check": "tsc"
   },
   "author": "Team Accentor <team@accentor.tech>",
   "contributors": [

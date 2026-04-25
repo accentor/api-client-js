@@ -10,8 +10,9 @@
     },
     "module": "es6",
     "moduleResolution": "node",
+    "noEmit": true
   },
   "exclude": [
-    "dist/*",
+    "dist/*"
   ]
 }
