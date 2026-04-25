@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "lib": ["es2020", "es6", "dom"],
-    "target": "es2018",
+    "lib": ["esnext", "dom"],
+    "target": "esnext",
     "declaration": true,    
     "baseUrl": "./src",
     "paths": {
       "*": ["node_modules/*"]
     },
-    "module": "es6",
-    "moduleResolution": "node",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "noEmit": true
   },
   "exclude": [

@@ -1,5 +1,4 @@
-import { setup, suite, test } from "mocha";
-import { assert } from "chai";
+import { suite, test, beforeEach, assert } from "vitest";
 
 import {
   AlbumsScope,
@@ -12,7 +11,7 @@ import {
 suite("Scope", function () {
   let scope;
 
-  setup(function () {
+  beforeEach(function () {
     scope = new Scope();
   });
 
@@ -36,7 +35,7 @@ suite("Scope", function () {
 suite("AlbumsScope", function () {
   let scope;
 
-  setup(function () {
+  beforeEach(function () {
     scope = new AlbumsScope();
   });
 
@@ -64,7 +63,7 @@ suite("AlbumsScope", function () {
 suite("ArtistsScope", function () {
   let scope;
 
-  setup(function () {
+  beforeEach(function () {
     scope = new ArtistsScope();
   });
 
@@ -77,7 +76,7 @@ suite("ArtistsScope", function () {
 suite("PlaysScope", function () {
   let scope;
 
-  setup(function () {
+  beforeEach(function () {
     scope = new PlaysScope();
   });
 
@@ -90,7 +89,7 @@ suite("PlaysScope", function () {
 suite("TracksScope", () => {
   let scope;
 
-  setup(function () {
+  beforeEach(function () {
     scope = new TracksScope();
   });
 

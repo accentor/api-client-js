@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 import { resolve } from "path";
 import dts from "vite-plugin-dts";
 
@@ -20,6 +20,16 @@ export default defineConfig({
           "fetch-retry": "useFetchRetry",
         },
       },
+    },
+  },
+  test: {
+    include: ["test/**/*.test.ts"],
+    setupFiles: ["test/mock-api.ts"],
+    coverage: {
+      provider: "v8",
+      include: ["src/**/*.ts"],
+      reporter: ["text-summary", "html", "lcov", "cobertura"],
+      reportsDirectory: "./coverage",
     },
   },
 });
