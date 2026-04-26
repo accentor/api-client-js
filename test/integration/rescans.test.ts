@@ -3,7 +3,7 @@ import fetchMock from "fetch-mock";
 import { RescanModule } from "../../src/api_module";
 
 suite("RescanModule", function () {
-  let module;
+  let module: RescanModule;
 
   beforeEach(function () {
     module = new RescanModule("http://example.org/api");
@@ -17,7 +17,7 @@ suite("RescanModule", function () {
     assert(response.done);
     assert.equal(response.value.length, 0);
     assert.equal(
-      fetchMock.callHistory.lastCall().url,
+      fetchMock.callHistory.lastCall()!.url,
       "http://example.org/api/rescans?page=1",
     );
   });

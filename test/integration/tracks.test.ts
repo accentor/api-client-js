@@ -3,7 +3,7 @@ import fetchMock from "fetch-mock";
 import { TrackModule } from "../../src/api_module";
 
 suite("TrackModule", function () {
-  let module;
+  let module: TrackModule;
 
   beforeEach(function () {
     module = new TrackModule("http://example.org/api");
@@ -17,7 +17,7 @@ suite("TrackModule", function () {
     assert(response.done);
     assert.equal(response.value.length, 0);
     assert.equal(
-      fetchMock.callHistory.lastCall().url,
+      fetchMock.callHistory.lastCall()!.url,
       "http://example.org/api/tracks?page=1",
     );
   });

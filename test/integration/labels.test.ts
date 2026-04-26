@@ -3,7 +3,7 @@ import fetchMock from "fetch-mock";
 import { LabelModule } from "../../src/api_module";
 
 suite("LabelModule", function () {
-  let module;
+  let module: LabelModule;
 
   beforeEach(function () {
     module = new LabelModule("http://example.org/api");
@@ -17,7 +17,7 @@ suite("LabelModule", function () {
     assert(response.done);
     assert.equal(response.value.length, 0);
     assert.equal(
-      fetchMock.callHistory.lastCall().url,
+      fetchMock.callHistory.lastCall()!.url,
       "http://example.org/api/labels?page=1",
     );
   });
