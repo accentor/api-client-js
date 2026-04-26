@@ -3,7 +3,7 @@ import fetchMock from "fetch-mock";
 import { ArtistModule } from "../../src/api_module";
 
 suite("ArtistModule", function () {
-  let module;
+  let module: ArtistModule;
 
   beforeEach(function () {
     module = new ArtistModule("http://example.org/api");
@@ -17,7 +17,7 @@ suite("ArtistModule", function () {
     assert(response.done);
     assert.equal(response.value.length, 0);
     assert.equal(
-      fetchMock.callHistory.lastCall().url,
+      fetchMock.callHistory.lastCall()!.url,
       "http://example.org/api/artists?page=1",
     );
   });

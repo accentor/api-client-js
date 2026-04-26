@@ -3,7 +3,7 @@ import fetchMock from "fetch-mock";
 import { PlaylistModule } from "../../src/api_module";
 
 suite("PlaylistModule", function () {
-  let module;
+  let module: PlaylistModule;
 
   beforeEach(function () {
     module = new PlaylistModule("http://example.org/api");
@@ -17,7 +17,7 @@ suite("PlaylistModule", function () {
     assert(response.done);
     assert.equal(response.value.length, 0);
     assert.equal(
-      fetchMock.callHistory.lastCall().url,
+      fetchMock.callHistory.lastCall()!.url,
       "http://example.org/api/playlists?page=1",
     );
   });

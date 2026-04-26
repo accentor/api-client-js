@@ -3,7 +3,7 @@ import fetchMock from "fetch-mock";
 import { GenreModule } from "../../src/api_module";
 
 suite("GenreModule", function () {
-  let module;
+  let module: GenreModule;
 
   beforeEach(function () {
     module = new GenreModule("http://example.org/api");
@@ -17,7 +17,7 @@ suite("GenreModule", function () {
     assert(response.done);
     assert.equal(response.value.length, 0);
     assert.equal(
-      fetchMock.callHistory.lastCall().url,
+      fetchMock.callHistory.lastCall()!.url,
       "http://example.org/api/genres?page=1",
     );
   });

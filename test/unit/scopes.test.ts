@@ -9,7 +9,7 @@ import {
 } from "../../src/scopes";
 
 suite("Scope", function () {
-  let scope;
+  let scope: Scope;
 
   beforeEach(function () {
     scope = new Scope();
@@ -33,7 +33,7 @@ suite("Scope", function () {
 });
 
 suite("AlbumsScope", function () {
-  let scope;
+  let scope: AlbumsScope;
 
   beforeEach(function () {
     scope = new AlbumsScope();
@@ -61,7 +61,7 @@ suite("AlbumsScope", function () {
 });
 
 suite("ArtistsScope", function () {
-  let scope;
+  let scope: ArtistsScope;
 
   beforeEach(function () {
     scope = new ArtistsScope();
@@ -74,7 +74,7 @@ suite("ArtistsScope", function () {
 });
 
 suite("PlaysScope", function () {
-  let scope;
+  let scope: PlaysScope;
 
   beforeEach(function () {
     scope = new PlaysScope();
@@ -87,7 +87,7 @@ suite("PlaysScope", function () {
 });
 
 suite("TracksScope", () => {
-  let scope;
+  let scope: TracksScope;
 
   beforeEach(function () {
     scope = new TracksScope();

@@ -3,7 +3,7 @@ import fetchMock from "fetch-mock";
 import { AuthTokenModule } from "../../src/api_module";
 
 suite("AuthTokenModule", function () {
-  let module;
+  let module: AuthTokenModule;
 
   beforeEach(function () {
     module = new AuthTokenModule("http://example.org/api");
@@ -17,7 +17,7 @@ suite("AuthTokenModule", function () {
     assert(response.done);
     assert.equal(response.value.length, 0);
     assert.equal(
-      fetchMock.callHistory.lastCall().url,
+      fetchMock.callHistory.lastCall()!.url,
       "http://example.org/api/auth_tokens?page=1",
     );
   });

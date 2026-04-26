@@ -27,8 +27,12 @@ export async function* indexGenerator<ReturnType, ST extends Scope>(
         },
       });
     } catch (error) {
-      const reason = {};
-      reason[error.constructor.name] = [error.message];
+      const reason: Record<string, string[]> = {};
+      if (error instanceof Error) {
+        reason[error.constructor.name] = [error.message];
+      } else {
+        reason["UnknownError"] = [`${error}`];
+      }
       throw reason;
     }
     const result = await response.json();
@@ -112,8 +116,12 @@ async function resolve<ReturnType>(request: Request): Promise<ReturnType> {
     response = await fetchRetry(request);
     result = response.status === 204 ? true : await response.json();
   } catch (error) {
-    const reason = {};
-    reason[error.constructor.name] = [error.message];
+    const reason: Record<string, string[]> = {};
+    if (error instanceof Error) {
+      reason[error.constructor.name] = [error.message];
+    } else {
+      reason["UnknownError"] = [`${error}`];
+    }
     throw reason;
   }
   if (response.ok) {

@@ -3,7 +3,7 @@ import fetchMock from "fetch-mock";
 import { CoverFilenameModule } from "../../src/api_module";
 
 suite("CoverFilenameModule", function () {
-  let module;
+  let module: CoverFilenameModule;
 
   beforeEach(function () {
     module = new CoverFilenameModule("http://example.org/api");
@@ -17,7 +17,7 @@ suite("CoverFilenameModule", function () {
     assert(response.done);
     assert.equal(response.value.length, 0);
     assert.equal(
-      fetchMock.callHistory.lastCall().url,
+      fetchMock.callHistory.lastCall()!.url,
       "http://example.org/api/cover_filenames?page=1",
     );
   });

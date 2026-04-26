@@ -3,7 +3,7 @@ import fetchMock from "fetch-mock";
 import { CodecModule } from "../../src/api_module";
 
 suite("CodecModule", function () {
-  let module;
+  let module: CodecModule;
 
   beforeEach(function () {
     module = new CodecModule("http://example.org/api");
@@ -17,7 +17,7 @@ suite("CodecModule", function () {
     assert(response.done);
     assert.equal(response.value.length, 0);
     assert.equal(
-      fetchMock.callHistory.lastCall().url,
+      fetchMock.callHistory.lastCall()!.url,
       "http://example.org/api/codecs?page=1",
     );
   });

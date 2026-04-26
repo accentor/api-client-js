@@ -3,7 +3,7 @@ import fetchMock from "fetch-mock";
 import { CodecConversionModule } from "../../src/api_module";
 
 suite("CodecConversionModule", function () {
-  let module;
+  let module: CodecConversionModule;
 
   beforeEach(function () {
     module = new CodecConversionModule("http://example.org/api");
@@ -17,7 +17,7 @@ suite("CodecConversionModule", function () {
     assert(response.done);
     assert.equal(response.value.length, 0);
     assert.equal(
-      fetchMock.callHistory.lastCall().url,
+      fetchMock.callHistory.lastCall()!.url,
       "http://example.org/api/codec_conversions?page=1",
     );
   });
