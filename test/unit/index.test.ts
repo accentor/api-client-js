@@ -1,5 +1,4 @@
-import { suite, test } from "mocha";
-import { assert } from "chai";
+import { suite, test, assert } from "vitest";
 import { createApiClient } from "../../src/index";
 
 suite("create API client", function () {

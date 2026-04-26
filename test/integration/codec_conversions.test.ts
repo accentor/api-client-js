@@ -1,16 +1,15 @@
-import { setup, suite, test, teardown } from "mocha";
-import { assert } from "chai";
+import { suite, test, beforeEach, afterEach, assert } from "vitest";
 import fetchMock from "fetch-mock";
 import { CodecConversionModule } from "../../src/api_module";
 
 suite("CodecConversionModule", function () {
   let module;
 
-  setup(function () {
+  beforeEach(function () {
     module = new CodecConversionModule("http://example.org/api");
   });
 
-  teardown(() => fetchMock.clearHistory());
+  afterEach(() => fetchMock.clearHistory());
 
   test("should correctly call index path", async function () {
     const index = module.index("123");

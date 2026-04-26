@@ -10,7 +10,7 @@
     "lint": "eslint . --fix",
     "build": "tsc && vite build",
     "dev": "vite build --watch",
-    "test": "nyc ./node_modules/.bin/_mocha",
+    "test": "vitest run --coverage",
     "type-check": "tsc"
   },
   "author": "Team Accentor <team@accentor.tech>",
@@ -24,23 +24,19 @@
   ],
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@types/chai": "^5.0.1",
-    "@types/mocha": "^10.0.6",
     "@types/node": "^25.0.1",
-    "chai": "^6.0.1",
+    "@vitest/coverage-v8": "^4.1.5",
     "eslint": "^10.0.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.0.0",
     "fetch-mock": "^12.0.0",
     "globals": "^17.0.0",
-    "mocha": "^11.0.1",
-    "nyc": "^18.0.0",
     "prettier": "^3.0.1",
-    "ts-node": "^10.9.2",
     "typescript": "^5.3.2",
     "typescript-eslint": "^8.0.0",
     "vite": "^8.0.0",
-    "vite-plugin-dts": "^4.5.3"
+    "vite-plugin-dts": "^4.5.3",
+    "vitest": "^4.1.5"
   },
   "dependencies": {
     "fetch-retry": "^6.0.0"

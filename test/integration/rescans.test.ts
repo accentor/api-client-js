@@ -1,16 +1,15 @@
-import { setup, suite, test, teardown } from "mocha";
-import { assert } from "chai";
+import { suite, test, beforeEach, afterEach, assert } from "vitest";
 import fetchMock from "fetch-mock";
 import { RescanModule } from "../../src/api_module";
 
 suite("RescanModule", function () {
   let module;
 
-  setup(function () {
+  beforeEach(function () {
     module = new RescanModule("http://example.org/api");
   });
 
-  teardown(() => fetchMock.clearHistory());
+  afterEach(() => fetchMock.clearHistory());
 
   test("should correctly call index path", async function () {
     const index = module.index("123");
