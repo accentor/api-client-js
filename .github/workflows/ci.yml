@@ -12,7 +12,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v6.0.2
+    - uses: actions/checkout@v6.0.3
     - name: Set up Node
       uses: actions/setup-node@v6.4.0
       with:
@@ -25,7 +25,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v6.0.2
+    - uses: actions/checkout@v6.0.3
     - name: Set up Node
       uses: actions/setup-node@v6.4.0
       with:
@@ -38,7 +38,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v6.0.2
+    - uses: actions/checkout@v6.0.3
     - name: Set up Node
       uses: actions/setup-node@v6.4.0
       with:
@@ -55,7 +55,7 @@ jobs:
   type-check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v6.0.2
+    - uses: actions/checkout@v6.0.3
     - name: Set up Node
       uses: actions/setup-node@v6.4.0
       with:
