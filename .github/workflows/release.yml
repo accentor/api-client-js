@@ -3,7 +3,7 @@ name: Release Package
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 permissions:
   id-token: write
@@ -13,31 +13,31 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v7.0.0
-    - name: Set up Node
-      uses: actions/setup-node@v6.4.0
-      with:
-        node-version: 'lts/*'
-        cache: 'yarn'
-        registry-url: 'https://registry.npmjs.org'
-    - name: Update npm to latest version for OIDC support
-      run: npm install -g npm@latest
-    - name: Install dependencies
-      run: yarn install
-    - name: Build
-      run: yarn build
-    - name: Parse tag
-      id: parse_tag
-      run: "echo ${{ github.ref }} | sed 's#^refs/tags/#::set-output name=version::#'"
-    - name: Create release
-      id: create_release
-      uses: release-drafter/release-drafter@v7
-      with:
-        name: ${{ steps.parse_tag.outputs.version }}
-        tag: ${{ steps.parse_tag.outputs.version }}
-        version: ${{ steps.parse_tag.outputs.version }}
-        publish: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Publish to NPM
-      run: yarn publish
+      - uses: actions/checkout@v7.0.0
+      - name: Set up Node
+        uses: actions/setup-node@v6.4.0
+        with:
+          node-version: "lts/*"
+          cache: "npm"
+          registry-url: "https://registry.npmjs.org"
+      - name: Update npm to latest version for OIDC support
+        run: npm install -g npm@latest
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Parse tag
+        id: parse_tag
+        run: "echo ${{ github.ref }} | sed 's#^refs/tags/#::set-output name=version::#'"
+      - name: Create release
+        id: create_release
+        uses: release-drafter/release-drafter@v7
+        with:
+          name: ${{ steps.parse_tag.outputs.version }}
+          tag: ${{ steps.parse_tag.outputs.version }}
+          version: ${{ steps.parse_tag.outputs.version }}
+          publish: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish to NPM
+        run: npm publish

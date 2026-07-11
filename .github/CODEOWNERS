@@ -1,4 +1,4 @@
 * @chvp @robbevp
 package.json @chvp
-yarn.lock @chvp
+package-lock.json @chvp
 .github/* @chvp
