@@ -5,63 +5,63 @@ on:
     branches:
       - main
     tags:
-      - '*'
+      - "*"
   pull_request:
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v7.0.0
-    - name: Set up Node
-      uses: actions/setup-node@v6.4.0
-      with:
-        node-version: 'lts/*'
-        cache: 'yarn'
-    - name: Install dependencies
-      run: yarn install
-    - name: Lint
-      run: yarn run lint --no-fix --max-warnings 0 --format stylish
+      - uses: actions/checkout@v7.0.0
+      - name: Set up Node
+        uses: actions/setup-node@v6.4.0
+        with:
+          node-version: "lts/*"
+          cache: "npm"
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint
+        run: npm run lint -- --no-fix --max-warnings 0 --format stylish
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v7.0.0
-    - name: Set up Node
-      uses: actions/setup-node@v6.4.0
-      with:
-        node-version: 'lts/*'
-        cache: 'yarn'
-    - name: Install dependencies
-      run: yarn install
-    - name: build
-      run: yarn build
+      - uses: actions/checkout@v7.0.0
+      - name: Set up Node
+        uses: actions/setup-node@v6.4.0
+        with:
+          node-version: "lts/*"
+          cache: "npm"
+      - name: Install dependencies
+        run: npm ci
+      - name: build
+        run: npm run build
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v7.0.0
-    - name: Set up Node
-      uses: actions/setup-node@v6.4.0
-      with:
-        node-version: 'lts/*'
-        cache: 'yarn'
-    - name: Install dependencies
-      run: yarn install
-    - name: test
-      run: yarn test
-    - uses: codecov/codecov-action@v7
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }} # required
-        files: cobertura-coverage.xml
+      - uses: actions/checkout@v7.0.0
+      - name: Set up Node
+        uses: actions/setup-node@v6.4.0
+        with:
+          node-version: "lts/*"
+          cache: "npm"
+      - name: Install dependencies
+        run: npm ci
+      - name: test
+        run: npm run test
+      - uses: codecov/codecov-action@v7
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }} # required
+          files: cobertura-coverage.xml
   type-check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v7.0.0
-    - name: Set up Node
-      uses: actions/setup-node@v6.4.0
-      with:
-        node-version: 'lts/*'
-        cache: 'yarn'
-    - name: Install dependencies
-      run: yarn install
-    - name: type-check
-      run: yarn type-check
+      - uses: actions/checkout@v7.0.0
+      - name: Set up Node
+        uses: actions/setup-node@v6.4.0
+        with:
+          node-version: "lts/*"
+          cache: "npm"
+      - name: Install dependencies
+        run: npm ci
+      - name: type-check
+        run: npm run type-check
