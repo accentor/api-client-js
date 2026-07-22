@@ -2,6 +2,20 @@ import useFetchRetry from "fetch-retry";
 import { Scope } from "./scopes";
 import { ApiToken } from "./types/auth";
 import { RetryOptions } from "./types/fetch_retry";
+import {
+  CustomError,
+  ErrorsBody,
+  ForbiddenError,
+  NotFoundError,
+  NotFoundErrorMessage,
+  PermissionErrorMessage,
+  RailsErrorMessage,
+  UnauthorizedError,
+  UnexpectedError,
+  UnknownError,
+  UnprocessableContentError,
+  ValidationErrorMessage,
+} from "./errors";
 
 const fetchRetry = useFetchRetry(fetch, {
   retries: 0,
@@ -111,22 +125,61 @@ export async function httpDelete(
 }
 
 async function resolve<ReturnType>(request: Request): Promise<ReturnType> {
-  let response: Response, result: ReturnType;
+  let response: Response;
   try {
     response = await fetchRetry(request);
-    result = response.status === 204 ? true : await response.json();
   } catch (error) {
-    const reason: Record<string, string[]> = {};
     if (error instanceof Error) {
-      reason[error.constructor.name] = [error.message];
+      throw error;
     } else {
-      reason["UnknownError"] = [`${error}`];
+      throw new UnknownError(error);
     }
-    throw reason;
   }
+
+  // Status 204 is a special case, since this doesn't have a body
+  if (response.status === 204) {
+    return true as ReturnType;
+  }
+
+  // If the body isn't json, we throw an error with the body parsed as plain text
+  const contentType = response.headers.get("Content-Type");
+  if (contentType !== "application/json") {
+    const body = await response.text();
+    throw new UnknownError(
+      `Expected a JSON response but got ${contentType}`,
+      body,
+    );
+  }
+
   if (response.ok) {
-    return result;
-  } else {
-    throw result;
+    return await response.json();
+  }
+
+  const body: ErrorsBody = await response.json();
+
+  if (!Array.isArray(body.errors)) {
+    throw new UnexpectedError(
+      "Received an unhandled JSON error",
+      body as unknown as RailsErrorMessage,
+    );
+  }
+
+  // We throw a specific type of error, depending on the status - we know the type of message that can occur
+  // for each body, so we can tell the typescript compiler what we expect
+  switch (response.status) {
+    case 401:
+      throw new UnauthorizedError(body.errors as Array<PermissionErrorMessage>);
+    case 403:
+      throw new ForbiddenError(
+        body.errors as Array<PermissionErrorMessage | ValidationErrorMessage>,
+      );
+    case 404:
+      throw new NotFoundError(body.errors as Array<NotFoundErrorMessage>);
+    case 422:
+      throw new UnprocessableContentError(
+        body.errors as Array<ValidationErrorMessage>,
+      );
+    default:
+      throw new CustomError("Unexpected structured error", body.errors);
   }
 }
