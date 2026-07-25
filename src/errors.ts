@@ -6,8 +6,9 @@ export type AnyError =
   ValidationErrorMessage | PermissionErrorMessage | NotFoundErrorMessage;
 
 export type ValidationErrorMessage = {
+  model: string;
   attribute: string;
-  type: "not_unique" | "required" | "wrong_credentials" | "incorrect_password";
+  type: string;
 };
 
 export type PermissionErrorMessage = {
