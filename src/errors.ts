@@ -21,7 +21,7 @@ export type NotFoundErrorMessage = {
   type: "not_found";
 };
 
-// NOTE: This message can also include a trace in a structured way, but we don't case about that
+// NOTE: This message can also include a trace in a structured way, but we don't care about that
 export type RailsErrorMessage = {
   status: number;
   error: string;
