@@ -143,7 +143,7 @@ async function resolve<ReturnType>(request: Request): Promise<ReturnType> {
 
   // If the body isn't json, we throw an error with the body parsed as plain text
   const contentType = response.headers.get("Content-Type");
-  if (contentType !== "application/json") {
+  if (contentType === null || !contentType?.startsWith("application/json")) {
     const body = await response.text();
     throw new UnknownError(
       `Expected a JSON response but got ${contentType}`,
