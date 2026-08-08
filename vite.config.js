@@ -9,7 +9,7 @@ export default defineConfig({
     sourcemap: true,
     lib: {
       name: "@accent/api-client-js",
-      entry: resolve(__dirname, "src/index.ts"),
+      entry: resolve(import.meta.dirname, "src/index.ts"),
       fileName: "index",
       formats: ["es", "cjs"],
     },
