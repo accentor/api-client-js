@@ -12,8 +12,9 @@ export type ValidationErrorMessage = {
 };
 
 export type PermissionErrorMessage = {
-  policy: string;
+  model: string;
   type: "unauthorized" | "forbidden";
+  action: string;
 };
 
 export type NotFoundErrorMessage = {
