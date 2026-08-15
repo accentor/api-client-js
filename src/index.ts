@@ -16,6 +16,7 @@ import {
   UserModule,
 } from "./api_module";
 export * from "./api_module";
+export * from "./errors";
 export * from "./scopes";
 export * from "./types";
 
