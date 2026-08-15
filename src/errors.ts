@@ -1,8 +1,8 @@
 export type ErrorsBody = {
-  errors: Array<AnyError>;
+  errors: Array<AnyErrorMessage>;
 };
 
-export type AnyError =
+export type AnyErrorMessage =
   ValidationErrorMessage | PermissionErrorMessage | NotFoundErrorMessage;
 
 export type ValidationErrorMessage = {
@@ -35,7 +35,7 @@ export type RailsErrorMessage = {
  * Each subclass of this needs to set a message for compatibility with the general `Error`,
  * though we probably would only use the `details`
  */
-export class CustomError<T = AnyError> extends Error {
+export class CustomError<T = AnyErrorMessage> extends Error {
   details: Array<T>;
 
   constructor(message: string, details: Array<T>) {
