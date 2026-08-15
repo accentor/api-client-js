@@ -1,10 +1,10 @@
 import { defineConfig } from "vitest/config";
 import { resolve } from "path";
-import dts from "vite-plugin-dts";
+import dts from "unplugin-dts/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [dts({ rollupTypes: true })],
+  plugins: [dts({ bundleTypes: true })],
   build: {
     sourcemap: true,
     lib: {
