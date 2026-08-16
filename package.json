@@ -1,6 +1,6 @@
 {
   "name": "@accentor/api-client-js",
-  "version": "0.24.0",
+  "version": "0.24.1",
   "type": "module",
   "description": "A javascript client for the Accentor API",
   "main": "dist/index.cjs",
