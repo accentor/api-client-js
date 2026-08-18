@@ -87,7 +87,7 @@ export class UnknownError extends Error {
 }
 
 export class UnexpectedError extends Error {
-  details: object;
+  details: RailsErrorMessage;
 
   constructor(message: string, details: RailsErrorMessage) {
     super(message);
