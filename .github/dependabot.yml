@@ -17,6 +17,11 @@ updates:
         - "typescript-eslint"
         - "eslint*"
         - "@eslint/*"
+    vite:
+      patterns:
+        - "vite"
+        - "vitest"
+        - "@vitest/*"
 - package-ecosystem: github-actions
   directory: "/"
   schedule:
