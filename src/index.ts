@@ -17,6 +17,7 @@ import {
 } from "./api_module";
 export * from "./api_module";
 export * from "./errors";
+export { IndexGenerator } from "./http";
 export * from "./scopes";
 export * from "./types";
 

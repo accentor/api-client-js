@@ -53,7 +53,7 @@ const result = await api.rescan.show(auth);
 ```
  
 ### Adding scopes to indexes
-If you want to filter the items fetched by through `indexGenerator`, you can pass an optional scope. We currently have scopes for albums, artists and tracks
+If you want to filter the items fetched by through `IndexGenerator`, you can pass an optional scope. We currently have scopes for albums, artists and tracks
 
 An example of a scope used:
 ```js
