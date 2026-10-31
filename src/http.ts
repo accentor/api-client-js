@@ -24,20 +24,40 @@ const fetchRetry = useFetchRetry(fetch, {
   },
 });
 
-export async function* indexGenerator<ReturnType, ST extends Scope>(
-  path: string,
-  apiToken: ApiToken,
-  scope: ST,
-): AsyncGenerator<ReturnType[], ReturnType[], void> {
-  let page = 1;
-  while (true) {
+export class IndexGenerator<ReturnType, ST extends Scope> {
+  #path: string;
+  #apiToken: ApiToken;
+  #scope: ST;
+  #currentPage: number = 0;
+  #totalPages: number = 1;
+
+  constructor(path: string, apiToken: ApiToken, scope: ST) {
+    this.#path = path;
+    this.#apiToken = apiToken;
+    this.#scope = scope;
+  }
+
+  get currentPage(): number {
+    return this.#currentPage;
+  }
+
+  get totalPages(): number {
+    return this.#totalPages;
+  }
+
+  get progress(): number {
+    return this.#currentPage / this.#totalPages;
+  }
+
+  async next(): Promise<{ value: ReturnType[]; done: boolean }> {
+    this.#currentPage++;
     let response: Response;
     try {
-      response = await fetchRetry(`${path}?page=${page}${scope.finalQuery}`, {
+      response = await fetchRetry(this.#fullPath(), {
         retries: 5,
         method: "GET",
         headers: {
-          Authorization: `Bearer ${apiToken}`,
+          Authorization: `Bearer ${this.#apiToken}`,
         },
       });
     } catch (error) {
@@ -51,16 +71,19 @@ export async function* indexGenerator<ReturnType, ST extends Scope>(
     }
     const result = await response.json();
     if (response.ok && result) {
-      if (response.headers.get("x-total-pages") === page.toString()) {
-        return result;
+      this.#totalPages = Number(response.headers.get("x-total-pages"));
+      if (this.#totalPages === this.#currentPage) {
+        return { value: result, done: true };
       } else {
-        yield result;
+        return { value: result, done: false };
       }
     } else {
       throw result;
     }
+  }
 
-    page++;
+  #fullPath() {
+    return `${this.#path}?page=${this.#currentPage}${this.#scope.finalQuery}`;
   }
 }
 

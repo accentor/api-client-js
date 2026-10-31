@@ -3,7 +3,7 @@ import {
   httpGet,
   httpPatch,
   httpPost,
-  indexGenerator,
+  IndexGenerator,
 } from "./http";
 import {
   AlbumsScope,
@@ -65,8 +65,12 @@ class BaseModule {
 }
 
 class CRDModule<Params, ReturnType> extends BaseModule {
-  index(apiToken: ApiToken): AsyncGenerator<ReturnType[], ReturnType[], void> {
-    return indexGenerator<ReturnType, Scope>(this.url, apiToken, new Scope());
+  index(apiToken: ApiToken): IndexGenerator<ReturnType, Scope> {
+    return new IndexGenerator<ReturnType, Scope>(
+      this.url,
+      apiToken,
+      new Scope(),
+    );
   }
 
   async create(apiToken: ApiToken, object: Params): Promise<ReturnType> {
@@ -108,8 +112,8 @@ export class AlbumModule extends CRUDModule<AlbumParams, Album> {
   index(
     apiToken: ApiToken,
     scope = new AlbumsScope(),
-  ): AsyncGenerator<Album[], Album[], void> {
-    return indexGenerator<Album, AlbumsScope>(this.url, apiToken, scope);
+  ): IndexGenerator<Album, AlbumsScope> {
+    return new IndexGenerator<Album, AlbumsScope>(this.url, apiToken, scope);
   }
 
   async destroyEmpty(apiToken: ApiToken): Promise<boolean> {
@@ -141,8 +145,8 @@ export class ArtistModule extends CRUDModule<ArtistParams, Artist> {
   index(
     apiToken: ApiToken,
     scope = new ArtistsScope(),
-  ): AsyncGenerator<Artist[], Artist[], void> {
-    return indexGenerator<Artist, ArtistsScope>(this.url, apiToken, scope);
+  ): IndexGenerator<Artist, ArtistsScope> {
+    return new IndexGenerator<Artist, ArtistsScope>(this.url, apiToken, scope);
   }
 
   async destroyEmpty(apiToken: ApiToken): Promise<boolean> {
@@ -171,8 +175,12 @@ export class AuthTokenModule extends BaseModule {
     super(baseURL, "auth_tokens");
   }
 
-  index(apiToken: ApiToken): AsyncGenerator<AuthToken[], AuthToken[], void> {
-    return indexGenerator<AuthToken, Scope>(this.url, apiToken, new Scope());
+  index(apiToken: ApiToken): IndexGenerator<AuthToken, Scope> {
+    return new IndexGenerator<AuthToken, Scope>(
+      this.url,
+      apiToken,
+      new Scope(),
+    );
   }
 
   async create(object: AuthTokenParams): Promise<AuthTokenWithToken> {
@@ -306,8 +314,8 @@ export class PlayModule extends BaseModule {
   index(
     apiToken: ApiToken,
     scope = new PlaysScope(),
-  ): AsyncGenerator<Play[], Play[], void> {
-    return indexGenerator<Play, PlaysScope>(this.url, apiToken, scope);
+  ): IndexGenerator<Play, PlaysScope> {
+    return new IndexGenerator<Play, PlaysScope>(this.url, apiToken, scope);
   }
 
   async create(apiToken: ApiToken, object: PlayParams): Promise<Play> {
@@ -317,8 +325,8 @@ export class PlayModule extends BaseModule {
   stats(
     apiToken: ApiToken,
     scope = new PlaysScope(),
-  ): AsyncGenerator<PlayStat[], PlayStat[], void> {
-    return indexGenerator<PlayStat, PlaysScope>(
+  ): IndexGenerator<PlayStat, PlaysScope> {
+    return new IndexGenerator<PlayStat, PlaysScope>(
       `${this.url}/stats`,
       apiToken,
       scope,
@@ -331,8 +339,8 @@ export class RescanModule extends BaseModule {
     super(baseURL, "rescans");
   }
 
-  index(apiToken: ApiToken): AsyncGenerator<Rescan[], Rescan[], void> {
-    return indexGenerator<Rescan, Scope>(this.url, apiToken, new Scope());
+  index(apiToken: ApiToken): IndexGenerator<Rescan, Scope> {
+    return new IndexGenerator<Rescan, Scope>(this.url, apiToken, new Scope());
   }
 
   async startAll(apiToken: ApiToken): Promise<Rescan> {
@@ -368,8 +376,8 @@ export class TrackModule extends CRUDModule<TrackParams, Track> {
   index(
     apiToken: ApiToken,
     scope = new TracksScope(),
-  ): AsyncGenerator<Track[], Track[], void> {
-    return indexGenerator<Track, TracksScope>(this.url, apiToken, scope);
+  ): IndexGenerator<Track, Scope> {
+    return new IndexGenerator<Track, TracksScope>(this.url, apiToken, scope);
   }
 
   async destroyEmpty(apiToken: ApiToken): Promise<boolean> {
