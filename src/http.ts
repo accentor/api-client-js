@@ -87,14 +87,6 @@ export class IndexGenerator<ReturnType, ST extends Scope> {
   }
 }
 
-export function buildIndexGenerator<ReturnType, ST extends Scope>(
-  path: string,
-  apiToken: ApiToken,
-  scope: ST,
-): IndexGenerator<ReturnType, ST> {
-  return new IndexGenerator<ReturnType, ST>(path, apiToken, scope);
-}
-
 export async function httpGet<ReturnType>(
   path: string,
   apiToken: ApiToken,
